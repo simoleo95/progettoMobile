@@ -1,0 +1,78 @@
+
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Segments
+    </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="giorno">
+      <ion-segment-button value="lunedi">
+        Lunedi
+      </ion-segment-button>
+      <ion-segment-button value="martedi">
+        Martedi
+      </ion-segment-button>
+      <ion-segment-button value="mercoledi">
+        Mercoledi
+      </ion-segment-button>
+      <ion-segment-button value="giovedi">
+        Giovedi
+      </ion-segment-button>
+      <ion-segment-button value="venerdi">
+        Venerdi
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="giorno">
+    <ion-list *ngSwitchCase="'lunedi'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>Ruby</h2>
+      </ion-item>
+     </ion-list>
+
+    <ion-list *ngSwitchCase="'martedi'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'mercoledi'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-duckling-1.jpg">
+        </ion-thumbnail>
+        <h2>Daffy</h2>
+      </ion-item>
+     </ion-list>
+
+     <ion-list *ngSwitchCase="'giovedi'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-duckling-1.jpg">
+        </ion-thumbnail>
+        <h2>Simone</h2>
+      </ion-item>
+     </ion-list>
+
+     <ion-list *ngSwitchCase="'venerdi'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-duckling-1.jpg">
+        </ion-thumbnail>
+        <h2>Leo</h2>
+      </ion-item>
+     </ion-list>
+
+  </div>
+</ion-content>
