@@ -14,6 +14,7 @@ import { Page3Page } from '../pages/page3/page3';
 import { TassePage } from '../pages/tasse/tasse';
 import { DovutePage } from '../pages/tasse/dovute/dovute';
 import { PagatePage } from '../pages/tasse/pagate/pagate';
+import { LibrettoPage } from '../pages/libretto/libretto';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page3Page,
     TassePage,
     DovutePage,
-    PagatePage
+    PagatePage,
+    LibrettoPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page3Page,
     TassePage,
     DovutePage,
-    PagatePage
+    PagatePage,
+    LibrettoPage
   ],
   providers: [
     StatusBar,
