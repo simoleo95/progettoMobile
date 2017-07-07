@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tasse</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+    <ion-tab [root]="dovute" tabTitle="Dovute"></ion-tab>
+    <ion-tab [root]="pagate" tabTitle="Pagate"></ion-tab>
+</ion-tabs>

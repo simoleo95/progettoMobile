@@ -8,6 +8,9 @@ import { ListPage } from '../pages/list/list';
 import { SettingsPage} from '../pages/settings/settings'
 import { AvatarPage} from '../pages/avatar/avatar'
 import { TabsPage } from '../pages/tabs/tabs';
+import { TassePage } from '../pages/tasse/tasse';
+import { DovutePage } from '../pages/tasse/dovute/dovute';
+import { PagatePage } from '../pages/tasse/pagate/pagate';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,8 +30,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Settings', component: SettingsPage },
-      { title : 'AvatarPage', component: AvatarPage},
-      { title : 'Orario', component: TabsPage}
+      { title: 'AvatarPage', component: AvatarPage },
+      { title: 'Orario', component: TabsPage },
+      { title: 'Tasse', component: TassePage }
     ];
 
   }
