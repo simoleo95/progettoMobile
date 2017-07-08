@@ -10,6 +10,7 @@ import { AvatarPage} from '../pages/avatar/avatar'
 import { TabsPage } from '../pages/tabs/tabs';
 import { TassePage } from '../pages/tasse/tasse';
 import { LibrettoPage } from '../pages/libretto/libretto';
+import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,8 @@ export class MyApp {
       { title: 'AvatarPage', component: AvatarPage },
       { title: 'Orario', component: TabsPage },
       { title: 'Tasse', component: TassePage },
-      { title: 'Libretto', component: LibrettoPage }
+      { title: 'Libretto', component: LibrettoPage },
+      { title: 'Piano di studi', component: PianodistudiPage }
     ];
 
   }

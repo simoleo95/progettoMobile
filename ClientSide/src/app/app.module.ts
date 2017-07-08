@@ -15,6 +15,10 @@ import { TassePage } from '../pages/tasse/tasse';
 import { DovutePage } from '../pages/tasse/dovute/dovute';
 import { PagatePage } from '../pages/tasse/pagate/pagate';
 import { LibrettoPage } from '../pages/libretto/libretto';
+import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
+import { Anno1Page } from '../pages/pianodistudi/anno1/anno1';
+import { Anno2Page } from '../pages/pianodistudi/anno2/anno2';
+import { Anno3Page } from '../pages/pianodistudi/anno3/anno3';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +37,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TassePage,
     DovutePage,
     PagatePage,
-    LibrettoPage
+    LibrettoPage,
+    PianodistudiPage,
+    Anno1Page,
+    Anno2Page,
+    Anno3Page
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TassePage,
     DovutePage,
     PagatePage,
-    LibrettoPage
+    LibrettoPage,
+    PianodistudiPage,
+    Anno1Page,
+    Anno2Page,
+    Anno3Page
   ],
   providers: [
     StatusBar,
