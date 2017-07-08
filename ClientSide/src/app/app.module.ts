@@ -19,6 +19,7 @@ import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
 import { Anno1Page } from '../pages/pianodistudi/anno1/anno1';
 import { Anno2Page } from '../pages/pianodistudi/anno2/anno2';
 import { Anno3Page } from '../pages/pianodistudi/anno3/anno3';
+import { NomemateriaPage } from '../pages/nomemateria/nomemateria';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PianodistudiPage,
     Anno1Page,
     Anno2Page,
-    Anno3Page
+    Anno3Page,
+    NomemateriaPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PianodistudiPage,
     Anno1Page,
     Anno2Page,
-    Anno3Page
+    Anno3Page,
+    NomemateriaPage
   ],
   providers: [
     StatusBar,

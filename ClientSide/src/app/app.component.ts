@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TassePage } from '../pages/tasse/tasse';
 import { LibrettoPage } from '../pages/libretto/libretto';
 import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
+import { NomemateriaPage } from '../pages/nomemateria/nomemateria';
 
 @Component({
   templateUrl: 'app.html'
