@@ -23,6 +23,7 @@ import { NomemateriaPage } from '../pages/nomemateria/nomemateria';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MyHeaderComponent } from '../components/my-header/my-header';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Anno1Page,
     Anno2Page,
     Anno3Page,
-    NomemateriaPage
+    NomemateriaPage,
+    MyHeaderComponent
   ],
   imports: [
     BrowserModule,
