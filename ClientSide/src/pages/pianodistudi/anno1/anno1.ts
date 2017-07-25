@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
+import { IonicPage, NavController, App } from 'ionic-angular';
 
 import { NomemateriaPage } from '../../nomemateria/nomemateria'
 
@@ -16,7 +16,7 @@ import { NomemateriaPage } from '../../nomemateria/nomemateria'
 })
 export class Anno1Page {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public appCtrl: App) {
+  constructor(public navCtrl: NavController, public appCtrl: App) {
   }
     
   Navigate() {

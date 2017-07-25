@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
-import { Anno1Page } from './anno1/anno1'
-import { Anno2Page } from './anno2/anno2'
-import { Anno3Page } from './anno3/anno3'
+import { Anno1Page } from './anno1/anno1';
+import { Anno2Page } from './anno2/anno2';
+import { Anno3Page } from './anno3/anno3';
+
+import { AvatarPage } from '../avatar/avatar';
 
 @IonicPage()
 @Component({
@@ -16,11 +18,15 @@ export class PianodistudiPage {
   Anno2: any = Anno2Page;
   Anno3: any = Anno3Page;
     
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PianodistudiPage');
+  }
+    
+  openAvatar() {
+      this.appCtrl.getRootNav().push(AvatarPage);
   }
 
 }

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { DovutePage } from './dovute/dovute';
 import { PagatePage } from './pagate/pagate';
+
+import { AvatarPage } from '../avatar/avatar';
 
 /**
  * Generated class for the TassePage page.
@@ -20,12 +22,16 @@ export class TassePage {
   dovute: any = DovutePage;
   pagate: any = PagatePage;
     
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
       
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TassePage');
+  }
+    
+  openAvatar() {
+      this.appCtrl.getRootNav().push(AvatarPage);
   }
 
 }

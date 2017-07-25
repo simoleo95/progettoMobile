@@ -4,6 +4,9 @@ import { Page1Page } from './page1/page1';
 import { Page2Page } from './page2/page2';
 import { Page3Page } from './page3/page3';
 
+import { AvatarPage } from '../avatar/avatar';
+import { NavController, App } from 'ionic-angular';
+
 /*
   Generated class for the Tabs page.
 
@@ -22,8 +25,12 @@ export class TabsPage {
   tab2Root: any = Page2Page;
   tab3Root: any = Page3Page;
 
-  constructor() {
+  constructor(public navCtrl: NavController, public appCtrl: App) {
 
+  }
+    
+  openAvatar() {
+      this.appCtrl.getRootNav().push(AvatarPage);
   }
 
 }

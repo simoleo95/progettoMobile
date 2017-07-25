@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
+
+import { AvatarPage } from '../avatar/avatar';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +9,12 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public appCtrl: App) {
 
+  }
+    
+  openAvatar() {
+      this.appCtrl.getRootNav().push(AvatarPage);
   }
 
 }
