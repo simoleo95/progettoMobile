@@ -20,9 +20,11 @@ import { Anno1Page } from '../pages/pianodistudi/anno1/anno1';
 import { Anno2Page } from '../pages/pianodistudi/anno2/anno2';
 import { Anno3Page } from '../pages/pianodistudi/anno3/anno3';
 import { NomemateriaPage } from '../pages/nomemateria/nomemateria';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Anno1Page,
     Anno2Page,
     Anno3Page,
-    NomemateriaPage
+    NomemateriaPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -68,12 +71,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Anno1Page,
     Anno2Page,
     Anno3Page,
-    NomemateriaPage
+    NomemateriaPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

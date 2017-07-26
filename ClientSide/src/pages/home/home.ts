@@ -8,10 +8,8 @@ import { AvatarPage } from '../avatar/avatar';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController, public appCtrl: App) {
-
-  }
+    
+  constructor(public nav: NavController, public appCtrl: App) { }
     
   openAvatar() {
       this.appCtrl.getRootNav().push(AvatarPage);

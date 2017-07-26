@@ -9,6 +9,7 @@ import { TabsPage } from '../pages/orario/tabs';
 import { TassePage } from '../pages/tasse/tasse';
 import { LibrettoPage } from '../pages/libretto/libretto';
 import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{icon: string, title: string, component: any}>;
 
