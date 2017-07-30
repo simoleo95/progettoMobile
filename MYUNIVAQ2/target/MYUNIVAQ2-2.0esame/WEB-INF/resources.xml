@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="myunivaqdb" type="javax.sql.DataSource">#Sat Jul 29 16:39:50 CEST 2017
+jdbcDriver=com.mysql.jdbc.Driver
+password=mysql
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/MYUNIVAQ?zeroDateTimeBehavior\=convertToNull
+</Resource>
+</resources>
