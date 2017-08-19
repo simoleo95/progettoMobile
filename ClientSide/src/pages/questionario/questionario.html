@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">Questionario</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only style="padding: 0 8px !importan;" (click)="openAvatar()">
+                <ion-icon name="person"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row style="border-bottom: 1px solid #AAA;">
+            <ion-col col-12>
+                <p>Domanda1</p>
+                <p>Domanda2</p>
+                <p>Domanda3</p>
+                <p>Domanda4</p>
+                <p>Domanda5</p>
+                <p>Domanda6</p>
+                <p>Domanda7</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card (clicl)="Navigate()">
+        <ion-card-content>
+            <p>Conferma</p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

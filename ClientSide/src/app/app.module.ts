@@ -20,6 +20,13 @@ import { Anno1Page } from '../pages/pianodistudi/anno1/anno1';
 import { Anno2Page } from '../pages/pianodistudi/anno2/anno2';
 import { Anno3Page } from '../pages/pianodistudi/anno3/anno3';
 import { NomemateriaPage } from '../pages/nomemateria/nomemateria';
+import { AulePage } from '../pages/aulelibere/aule';
+import { Blocco0Page } from '../pages/aulelibere/blocco0/blocco0';
+import { Blocco1Page } from '../pages/aulelibere/blocco1/blocco1';
+import { Blocco2Page } from '../pages/aulelibere/blocco2/blocco2';
+import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
+import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
+import { QuestionarioPage } from '../pages/questionario/questionario';
 import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -46,6 +53,13 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     Anno2Page,
     Anno3Page,
     NomemateriaPage,
+    AulePage,
+    Blocco0Page,
+    Blocco1Page,
+    Blocco2Page,
+    DettaglioAppelliPage,
+    ListaAppelliPage,
+    QuestionarioPage,
     LoginPage
   ],
   imports: [
@@ -72,6 +86,13 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     Anno2Page,
     Anno3Page,
     NomemateriaPage,
+    AulePage,
+    Blocco0Page,
+    Blocco1Page,
+    Blocco2Page,
+    DettaglioAppelliPage,
+    ListaAppelliPage,
+    QuestionarioPage,
     LoginPage
   ],
   providers: [
