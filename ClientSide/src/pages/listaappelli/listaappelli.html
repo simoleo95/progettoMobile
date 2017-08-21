@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">Lista Appelli</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only style="padding: 0 8px !importan;" (click)="openAvatar()">
+                <ion-icon name="person"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card (click)="Navigate()">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <p class="materia" style="font-weight: bold;font-size: 18px;">Applicazioni per Dispositivi Mobili</p>
+                        <p>Data</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="Navigate()">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <p class="materia" style="font-weight: bold;font-size: 18px;">Analisi Numerica</p>
+                        <p>Data</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="Navigate()">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <p class="materia" style="font-weight: bold;font-size: 18px;">Nome Materia</p>
+                        <p>Data</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

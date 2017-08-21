@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+        <ion-buttons left>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title style="text-align: center;">Aule Libere</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only style="padding: 0 8px !important;" (click)="openAvatar()">
+                <ion-icon name="person"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+    <ion-tab [root]="blocco0" tabTitle="Blocco 0"></ion-tab>
+    <ion-tab [root]="blocco1" tabTitle="Blocco 1"></ion-tab>
+    <ion-tab [root]="blocco2" tabTitle="Blocco 2"></ion-tab>
+</ion-tabs>

@@ -10,6 +10,8 @@ import { TassePage } from '../pages/tasse/tasse';
 import { LibrettoPage } from '../pages/libretto/libretto';
 import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
 import { LoginPage } from '../pages/login/login';
+import { AulePage } from '../pages/aulelibere/aule';
+import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   pages: Array<{icon: string, title: string, component: any}>;
 
@@ -31,6 +33,8 @@ export class MyApp {
       { icon: 'cash', title: 'Tasse', component: TassePage },
       { icon: 'book', title: 'Libretto', component: LibrettoPage },
       { icon: 'school', title: 'Piano di studi', component: PianodistudiPage },
+      { icon: 'school', title: 'Aule Libere', component: AulePage },
+      { icon: 'school', title: 'Lista Appelli', component: ListaAppelliPage },
       { icon: 'settings', title: 'Impostazioni', component: SettingsPage }
      // { icon: 'contact', title: 'Profilo' , component: AvatarPage}
     ];
