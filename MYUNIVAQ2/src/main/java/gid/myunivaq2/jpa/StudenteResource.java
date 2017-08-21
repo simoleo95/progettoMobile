@@ -5,11 +5,6 @@
  */
 package gid.myunivaq2.jpa;
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -23,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
 /**
  * REST Web Service
  *
@@ -31,6 +27,7 @@ import javax.ws.rs.core.Response;
 @Path("Studente")
 public class StudenteResource {
 
+    
    
     @PersistenceContext(unitName = "GID_MYUNIVAQ2_war_2.0esamePU")
     private EntityManager em;
@@ -52,10 +49,9 @@ public class StudenteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStudenti() {
         Query q = em.createNamedQuery("Studente.findAll",Studente.class);
-        Response.ok(q.getResultList()).build();
-        return Response.ok(q.getResultList()).build();
+      
+        return Response.ok( q.getResultList()).build();
     }
-    
     
 
     /**
@@ -66,6 +62,8 @@ public class StudenteResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
+
+   
 
    
 }

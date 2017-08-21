@@ -27,7 +27,7 @@ import javax.ws.rs.core.PathSegment;
  * @author ASUS TRONY
  */
 @Stateless
-@Path("gid.myunivaq2.jpa.esamisvolti")
+@Path("esamisvolti")
 public class EsamiSvoltiFacadeREST extends AbstractFacade<EsamiSvolti> {
 
     @PersistenceContext(unitName = "GID_MYUNIVAQ2_war_2.0esamePU")

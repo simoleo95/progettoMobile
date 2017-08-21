@@ -69,6 +69,7 @@ public class StudenteFacadeREST extends AbstractFacade<Studente> {
         return super.findAll();
     }
 
+    
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

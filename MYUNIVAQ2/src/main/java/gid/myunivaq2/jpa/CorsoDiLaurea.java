@@ -5,7 +5,6 @@
  */
 package gid.myunivaq2.jpa;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -21,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,8 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CorsoDiLaurea.findAll", query = "SELECT c FROM CorsoDiLaurea c")
+    , @NamedQuery(name = "CorsoDiLaurea.findAll2", query = "SELECT c.id,c.nome,c.descrizione FROM CorsoDiLaurea c")
     , @NamedQuery(name = "CorsoDiLaurea.findById", query = "SELECT c FROM CorsoDiLaurea c WHERE c.id = :id")
-    , @NamedQuery(name = "CorsoDiLaurea.findByNome", query = "SELECT c FROM CorsoDiLaurea c WHERE c.nome = :nome")})
+    , @NamedQuery(name = "CorsoDiLaurea.findByNome", query = "SELECT c FROM CorsoDiLaurea c WHERE c.nome = :nome")
+})
 public class CorsoDiLaurea implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,10 +62,8 @@ public class CorsoDiLaurea implements Serializable {
         @JoinColumn(name = "id_corso", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "id_materia", referencedColumnName = "codice")})
     @ManyToMany
-    @JsonIgnore
-    private Collection<Materia> materiaCollection;
+     private Collection<Materia> materiaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "corso")
-   @JsonIgnore
     private Collection<Studente> studenteCollection;
 
     public CorsoDiLaurea() {
@@ -106,7 +104,6 @@ public class CorsoDiLaurea implements Serializable {
     }
 
     @XmlTransient
-    @JsonIgnore
     public Collection<Materia> getMateriaCollection() {
         return materiaCollection;
     }
@@ -116,7 +113,6 @@ public class CorsoDiLaurea implements Serializable {
     }
 
     @XmlTransient
-    @JsonIgnore
     public Collection<Studente> getStudenteCollection() {
         return studenteCollection;
     }

@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author ASUS TRONY
  */
 @Stateless
-@Path("gid.myunivaq2.jpa.materia")
+@Path("materia")
 public class MateriaFacadeREST extends AbstractFacade<Materia> {
 
     @PersistenceContext(unitName = "GID_MYUNIVAQ2_war_2.0esamePU")

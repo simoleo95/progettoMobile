@@ -5,7 +5,7 @@
  */
 package gid.myunivaq2.jpa;
 
-import com.fasterxml.jackson.annotation.*;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,10 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Studente")
 @XmlRootElement
-@JsonRootName(value = "Studente")
 @NamedQueries({
     @NamedQuery(name = "Studente.findAll", query = "SELECT s FROM Studente s")
-    , @NamedQuery(name = "Studente.findByMatricola", query = "SELECT s FROM Studente s WHERE s.matricola = :matricola")
+    ,@NamedQuery(name = "Studente.findAll2", query = "SELECT s.matricola ,s.nome ,s.cognome ,s.dataDiNascita,s.corso FROM Studente s")
     , @NamedQuery(name = "Studente.findByNome", query = "SELECT s FROM Studente s WHERE s.nome = :nome")
     , @NamedQuery(name = "Studente.findByCognome", query = "SELECT s FROM Studente s WHERE s.cognome = :cognome")
     , @NamedQuery(name = "Studente.findByDataDiNascita", query = "SELECT s FROM Studente s WHERE s.dataDiNascita = :dataDiNascita")})
@@ -68,17 +66,13 @@ public class Studente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataDiNascita;
     @ManyToMany(mappedBy = "studenteCollection")
-    @JsonIgnore
-    private Collection<Materia> materiaCollection;
+     private Collection<Materia> materiaCollection;
     @JoinColumn(name = "corso", referencedColumnName = "id")
     @ManyToOne(optional = false)
-   @JsonIgnore
     private CorsoDiLaurea corso;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studente")
-    @JsonIgnore
     private Collection<EsamiSvolti> esamiSvoltiCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studenteFk")
-    @JsonIgnore
     private Collection<Tassa> tassaCollection;
 
     public Studente() {
@@ -128,11 +122,9 @@ public class Studente implements Serializable {
     }
 
     @XmlTransient
-    @JsonIgnore
     public Collection<Materia> getMateriaCollection() {
         return materiaCollection;
     }
-    @JsonProperty
     public void setMateriaCollection(Collection<Materia> materiaCollection) {
         this.materiaCollection = materiaCollection;
     }
@@ -146,22 +138,18 @@ public class Studente implements Serializable {
     }
 
     @XmlTransient
-    @JsonIgnore
-    public Collection<EsamiSvolti> getEsamiSvoltiCollection() {
+     public Collection<EsamiSvolti> getEsamiSvoltiCollection() {
         return esamiSvoltiCollection;
     }
-    @JsonProperty
-    public void setEsamiSvoltiCollection(Collection<EsamiSvolti> esamiSvoltiCollection) {
+       public void setEsamiSvoltiCollection(Collection<EsamiSvolti> esamiSvoltiCollection) {
         this.esamiSvoltiCollection = esamiSvoltiCollection;
     }
 
     @XmlTransient
-     @JsonIgnore
-    public Collection<Tassa> getTassaCollection() {
+      public Collection<Tassa> getTassaCollection() {
         return tassaCollection;
     }
-    @JsonProperty
-    public void setTassaCollection(Collection<Tassa> tassaCollection) {
+       public void setTassaCollection(Collection<Tassa> tassaCollection) {
         this.tassaCollection = tassaCollection;
     }
 
