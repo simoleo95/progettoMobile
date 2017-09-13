@@ -1,0 +1,13 @@
+se non va è perche l'url di mysql è diverso dal mio ... 
+
+da notare la porta del server :
+http://localhost:8088/MYUNIVAQ2/
+output:elenco tasse per matricola   rest/tassa/matricola/{matricola}
+output:esamiSvolti per matricola    rest/esamiSvolti/matricola/{matricola}
+output:tutti gli esami da fare      rest/studente/pianoDiStudi/{matricola}
+output:esami scelti                 rest/studente/corsiScelti/matricola/{matricola}
+output:esami svolti                 rest/studente/esamiSvolti/matricola/{matricola}
+output:esami di un corso            rest/corsodilaurea/esamiCorso/{idcorso}
+output:tutti gli appelli ( non sono riuscito a filtrarli con quelli gia fatti e da fare)   rest/appello/matricola/{matricola}  
+                                    
+                                    
