@@ -5,6 +5,7 @@
  */
 package gid.myunivaq2.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -119,11 +120,13 @@ public class Appello implements Serializable {
         this.fkMateria = fkMateria;
     }
 
-    @XmlTransient
+     @XmlTransient
+     @JsonIgnore
     public Collection<EsamiSvolti> getEsamiSvoltiCollection() {
         return esamiSvoltiCollection;
     }
-
+     @XmlTransient
+     @JsonIgnore
     public void setEsamiSvoltiCollection(Collection<EsamiSvolti> esamiSvoltiCollection) {
         this.esamiSvoltiCollection = esamiSvoltiCollection;
     }

@@ -5,6 +5,10 @@
  */
 package gid.myunivaq2.jpa;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -38,6 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CorsoDiLaurea.findById", query = "SELECT c FROM CorsoDiLaurea c WHERE c.id = :id")
     , @NamedQuery(name = "CorsoDiLaurea.findByNome", query = "SELECT c FROM CorsoDiLaurea c WHERE c.nome = :nome")
 })
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class CorsoDiLaurea implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,6 +69,7 @@ public class CorsoDiLaurea implements Serializable {
     @ManyToMany
      private Collection<Materia> materiaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "corso")
+    @JsonBackReference
     private Collection<Studente> studenteCollection;
 
     public CorsoDiLaurea() {
@@ -113,6 +119,7 @@ public class CorsoDiLaurea implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Studente> getStudenteCollection() {
         return studenteCollection;
     }

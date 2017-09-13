@@ -5,6 +5,7 @@
  */
 package gid.myunivaq2.jpa;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -44,6 +45,7 @@ public class EsamiSvolti implements Serializable {
     private Materia materia;
     @JoinColumn(name = "fk_studente", referencedColumnName = "matricola", insertable = false, updatable = false)
     @ManyToOne(optional = false)
+    @JsonManagedReference
     private Studente studente;
     @JoinColumn(name = "fk_appello", referencedColumnName = "id")
     @ManyToOne(optional = false)

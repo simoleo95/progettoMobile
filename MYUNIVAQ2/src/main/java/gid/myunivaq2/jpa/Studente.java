@@ -6,6 +6,9 @@
 package gid.myunivaq2.jpa;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -23,6 +26,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -66,13 +70,17 @@ public class Studente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataDiNascita;
     @ManyToMany(mappedBy = "studenteCollection")
+    @JsonIgnore
      private Collection<Materia> materiaCollection;
     @JoinColumn(name = "corso", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonManagedReference
     private CorsoDiLaurea corso;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studente")
+    @JsonBackReference
     private Collection<EsamiSvolti> esamiSvoltiCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studenteFk")
+    @JsonManagedReference
     private Collection<Tassa> tassaCollection;
 
     public Studente() {
@@ -122,6 +130,7 @@ public class Studente implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Materia> getMateriaCollection() {
         return materiaCollection;
     }
@@ -138,6 +147,7 @@ public class Studente implements Serializable {
     }
 
     @XmlTransient
+    @Transient
      public Collection<EsamiSvolti> getEsamiSvoltiCollection() {
         return esamiSvoltiCollection;
     }
@@ -146,6 +156,7 @@ public class Studente implements Serializable {
     }
 
     @XmlTransient
+    @Transient
       public Collection<Tassa> getTassaCollection() {
         return tassaCollection;
     }

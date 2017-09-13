@@ -5,7 +5,11 @@
  */
 package gid.myunivaq2.service.service;
 
+import SPARTA.TassaMatricola;
 import gid.myunivaq2.jpa.Tassa;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -61,10 +66,22 @@ public class TassaFacadeREST extends AbstractFacade<Tassa> {
     public Tassa find(@PathParam("id") String id) {
         return super.find(id);
     }
-
+    
+    @GET
+    @Path("matricola/{matricola}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response findmatricola(@PathParam("matricola") String a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       TassaMatricola asd = new TassaMatricola();
+       List<TassaMatricola> list = asd.TassaMatricolaC(con, a);
+       
+       return Response.ok(list).build();
+    }
+    
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON})
     public List<Tassa> findAll() {
         return super.findAll();
     }

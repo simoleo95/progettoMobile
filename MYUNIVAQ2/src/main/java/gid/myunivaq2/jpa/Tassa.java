@@ -5,6 +5,11 @@
  */
 package gid.myunivaq2.jpa;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -22,6 +27,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Tassa.findAll", query = "SELECT t FROM Tassa t")
     , @NamedQuery(name = "Tassa.findById", query = "SELECT t FROM Tassa t WHERE t.id = :id")
+    , @NamedQuery(name = "Tassa.findBymatricola", query = "SELECT t FROM Tassa t  WHERE t.studenteFk.matricola = :matricola")
     , @NamedQuery(name = "Tassa.findByNome", query = "SELECT t FROM Tassa t WHERE t.nome = :nome")
     , @NamedQuery(name = "Tassa.findByDataScadenza", query = "SELECT t FROM Tassa t WHERE t.dataScadenza = :dataScadenza")
     , @NamedQuery(name = "Tassa.findByCosto", query = "SELECT t FROM Tassa t WHERE t.costo = :costo")
@@ -53,7 +60,7 @@ public class Tassa implements Serializable {
     private String nome;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "data scadenza")
+    @Column(name = "datascadenza")
     @Temporal(TemporalType.DATE)
     private Date dataScadenza;
     @Basic(optional = false)
@@ -65,6 +72,7 @@ public class Tassa implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "costo")
+    @JsonIgnore
     private int costo;
     @Basic(optional = false)
     @NotNull
@@ -72,8 +80,10 @@ public class Tassa implements Serializable {
     private boolean pagata;
     @JoinColumn(name = "studente_fk", referencedColumnName = "matricola")
     @ManyToOne(optional = false)
+    @JsonBackReference
+    @JsonProperty(access = Access.WRITE_ONLY)
     private Studente studenteFk;
-
+    
     public Tassa() {
     }
 
@@ -97,7 +107,8 @@ public class Tassa implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-
+    
+    
     public String getNome() {
         return nome;
     }
@@ -121,11 +132,12 @@ public class Tassa implements Serializable {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-
+    
+    @JsonIgnore
     public int getCosto() {
         return costo;
     }
-
+    @JsonIgnore
     public void setCosto(int costo) {
         this.costo = costo;
     }
@@ -137,11 +149,14 @@ public class Tassa implements Serializable {
     public void setPagata(boolean pagata) {
         this.pagata = pagata;
     }
-
+    
+    @XmlTransient
+     @JsonIgnore
     public Studente getStudenteFk() {
         return studenteFk;
     }
-
+    @XmlTransient
+    @JsonProperty
     public void setStudenteFk(Studente studenteFk) {
         this.studenteFk = studenteFk;
     }

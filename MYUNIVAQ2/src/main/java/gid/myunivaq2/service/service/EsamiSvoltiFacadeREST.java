@@ -5,8 +5,12 @@
  */
 package gid.myunivaq2.service.service;
 
+import SPARTA.LibrettoMatricola;
 import gid.myunivaq2.jpa.EsamiSvolti;
 import gid.myunivaq2.jpa.EsamiSvoltiPK;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,6 +25,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -64,7 +69,18 @@ public class EsamiSvoltiFacadeREST extends AbstractFacade<EsamiSvolti> {
     public void create(EsamiSvolti entity) {
         super.create(entity);
     }
-
+    @GET
+    @Path("matricola/{matricola}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response findmatricolaa(@PathParam("matricola") String a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       LibrettoMatricola asd = new LibrettoMatricola();
+       List<LibrettoMatricola> list = asd.LibrettoMatricola(con, a);
+       
+       return Response.ok(list).build();
+    }
+    
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

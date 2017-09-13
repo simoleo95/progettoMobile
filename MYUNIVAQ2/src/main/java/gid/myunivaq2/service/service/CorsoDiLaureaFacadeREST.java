@@ -5,7 +5,11 @@
  */
 package gid.myunivaq2.service.service;
 
+import SPARTA.PianoDiStudi;
 import gid.myunivaq2.jpa.CorsoDiLaurea;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -83,6 +88,18 @@ public class CorsoDiLaureaFacadeREST extends AbstractFacade<CorsoDiLaurea> {
         return String.valueOf(super.count());
     }
 
+    @GET
+    @Path("esamiCorso/{corso}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response findmatricolaa(@PathParam("corso") String a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       PianoDiStudi asd = new PianoDiStudi();
+       List<PianoDiStudi> list = asd.esamicorso(con, a);
+       
+       return Response.ok(list).build();
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

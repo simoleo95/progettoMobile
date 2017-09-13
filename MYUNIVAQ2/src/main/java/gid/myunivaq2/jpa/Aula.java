@@ -5,6 +5,7 @@
  */
 package gid.myunivaq2.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -78,10 +79,12 @@ public class Aula implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Appello> getAppelloCollection() {
         return appelloCollection;
     }
-
+    @XmlTransient
+     @JsonIgnore
     public void setAppelloCollection(Collection<Appello> appelloCollection) {
         this.appelloCollection = appelloCollection;
     }

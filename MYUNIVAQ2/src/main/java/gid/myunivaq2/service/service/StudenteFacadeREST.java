@@ -5,7 +5,12 @@
  */
 package gid.myunivaq2.service.service;
 
+import SPARTA.LibrettoMatricola;
+import SPARTA.PianoDiStudi;
 import gid.myunivaq2.jpa.Studente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,13 +24,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author ASUS TRONY
  */
 @Stateless
-@Path("studentexml")
+@Path("studente")
 public class StudenteFacadeREST extends AbstractFacade<Studente> {
 
     @PersistenceContext(unitName = "GID_MYUNIVAQ2_war_2.0esamePU")
@@ -60,6 +66,42 @@ public class StudenteFacadeREST extends AbstractFacade<Studente> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Studente find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("pianoDiStudi/matricola/{matricola}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response findmatricolaa(@PathParam("matricola") String a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       PianoDiStudi asd = new PianoDiStudi();
+       List<PianoDiStudi> list = asd.PianoDiStudi(con, a);
+       
+       return Response.ok(list).build();
+    }
+    
+    @GET
+    @Path("corsiScelti/matricola/{matricola}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response esamisceltirest(@PathParam("matricola") int a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       PianoDiStudi asd = new PianoDiStudi();
+       List<PianoDiStudi> list = asd.esamiscelti(con, a);
+       
+       return Response.ok(list).build();
+    }
+    
+    @GET
+    @Path("esamiSvolti/matricola/{matricola}")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response esamisvolti(@PathParam("matricola") String a) throws SQLException {  
+       
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+       LibrettoMatricola asd = new LibrettoMatricola();
+       List<LibrettoMatricola> list = asd.LibrettoMatricola(con, a);
+       
+       return Response.ok(list).build();
     }
 
     @GET
