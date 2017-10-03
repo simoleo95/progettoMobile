@@ -1,0 +1,10 @@
+gid\myunivaq3\GenericResource.class
+obj\Studente.class
+obj\Aula.class
+obj\Corso.class
+gid\myunivaq3\ApplicationConfig.class
+obj\Appello.class
+obj\Professore.class
+obj\EsamiSvolti.class
+obj\Materia.class
+obj\Tassa.class

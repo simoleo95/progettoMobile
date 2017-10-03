@@ -1,0 +1,133 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gid.myunivaq3;
+
+import java.sql.SQLException;
+import java.util.List;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import obj.Corso;
+import obj.EsamiSvolti;
+import obj.Login;
+import obj.Materia;
+import obj.Studente;
+import obj.Tassa;
+
+/**
+ * REST Web Service
+ *
+ * @author ASUS TRONY
+ */
+@Path("{matricola}")
+public class StudenteResource {
+
+    @Context
+    private UriInfo context;
+
+    /**
+     * Creates a new instance of StudenteResource
+     */
+    public StudenteResource() {
+    }
+
+    /**
+     * Retrieves representation of an instance of gid.myunivaq3.StudenteResource
+     * @return an instance of java.lang.String
+     */
+     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response tutto(@PathParam("matricola") int a,Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+       
+       return Response.ok(s).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+    @POST
+    @Path("libretto")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response libretto(@PathParam("matricola") int a,Login log) throws SQLException {
+        
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+        List<EsamiSvolti> libretto = s.getLibretto();
+       return Response.ok(libretto).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+    @POST
+    @Path("corsi_a_scelta")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response corsiAScelta(@PathParam("matricola") int a,Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+        List<Materia> corsiScelti = s.getCorsiScelti();
+       return Response.ok(corsiScelti).build();
+       }
+       return Response.ok("errore").build();
+    }
+     @POST
+    @Path("corso")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response corso(@PathParam("matricola") int a,Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+           Corso corso = s.getCorso();
+       return Response.ok(corso).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+    @POST
+    @Path("tutti_i_corsi")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response tuttiIcorsi(@PathParam("matricola") int a,Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+           Corso corso = s.getCorso();
+           List<Materia> materie = corso.getMaterie();
+           List<Materia> corsiScelti = s.getCorsiScelti();
+                   corsiScelti.addAll(materie);
+                   
+       return Response.ok(corsiScelti).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+      @POST
+    @Path("tasse")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response tasse(@PathParam("matricola") int a , Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+           List<Tassa> tasse = s.getTasse();
+       return Response.ok(tasse).build();
+       }
+       return Response.ok("errore").build();
+    }
+}
