@@ -1,0 +1,27 @@
+QUESTI sono tutti metodi POST:
+e nel PAYLOAD ci va un json fatto cosi :
+{
+"user":"{user}"
+"token":"{token}"    
+}
+http://localhost:8088/MYUNIVAQ3/rest/{matricola} (questo ristituisce tutto in una botta sola )
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/libretto
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/corsi_a_scelta
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/corso
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/tutti_i_corsi 
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/appelli ( la devo finire questa)
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/tasse
+
+
+il token vine salvato e ristituito quando viene eseguita 
+http://localhost:8088/MYUNIVAQ3/rest/login
+metodo post
+payload:
+{
+"user":"{user}"
+"psw":"{psw}"    
+}
+
+mi rimane da sistemare un po di put per inserire i dati ( ma  a voi non server)
+forse giusto questo per il login per inserire nuovi utenti 
+( vedete sul db quali sono gli utenti e le psw e aggiungeteli da li se mai per ora )
