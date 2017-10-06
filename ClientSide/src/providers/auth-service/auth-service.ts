@@ -32,12 +32,12 @@ export class AuthServiceProvider {
     } 
     else {
       return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
+          
         this.JsonService.getUser(credentials.user, credentials.password).then(data => {
             if(data != "psw errata")
                 this.temp = data;
             
-            let access = (this.temp !== null);
+            let access = (this.temp["token"] !== "user inesistente ");
             
             // Cambiare dati con quelli veri
             this.currentUser = new User(this.temp['user'], this.temp['matricola'], this.temp['token']);
