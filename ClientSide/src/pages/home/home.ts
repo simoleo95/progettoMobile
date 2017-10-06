@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+    import { Component } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 
 import { AvatarPage } from '../avatar/avatar';

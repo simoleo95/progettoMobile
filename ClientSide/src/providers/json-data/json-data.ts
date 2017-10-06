@@ -10,24 +10,36 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class JsonDataProvider {
-
+    
+    data: any;
+    
     constructor(public http: Http) {
         console.log('Hello JsonDataProvider Provider');
     }
     
     getData() {
-        let headers = new Headers();
-        headers.append('Content-Type','application/json');
+        if(this.data) {
+            return Promise.resolve(this.data);
+        }
         
-        let body = {
-            "user":"cris",
-            "token":"cris:42d4f17d7b7f0e7"
-        };
-        
-        this.http.post('http://localhost:8088/MYUNIVAQ3/rest/236425', JSON.stringify(body), {headers: headers})
-            .subscribe(data => {
-                console.log(data);
-            });
+        return new Promise(resolve => {
+    
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+
+            let body = {
+                "user":"cris",
+                "token":"cris:42d4f17d7b7f0e7"
+            };
+
+            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/236425', JSON.stringify(body), {headers: headers})
+                .map(res => res.json())
+                .subscribe(data => {
+                    // console.log(data);
+                    this.data = data;
+                    resolve(this.data);
+                });
+        });
     }
 
 }

@@ -14,9 +14,9 @@
 
 
 <ion-content>
-    <ion-card>
+    <ion-card *ngFor="let t of tasse">
       <ion-card-header style="text-align:center;">
-          <p style="font-size: 21px;">Prima Tassa</p> a.a. 2017/2018
+          <p style="font-size: 21px;">{{t.descrizione}}</p> a.a. 2017/2018
       </ion-card-header>
       <ion-card-content>
         <ion-grid>

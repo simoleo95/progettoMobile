@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { JsonDataProvider } from '../../../providers/json-data/json-data';
 
 /**
  * Generated class for the PagatePage page.
@@ -13,8 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'pagate.html',
 })
 export class PagatePage {
+    
+  tasse: Array<any> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public JsonService: JsonDataProvider) {
+      this.JsonService.getData().then(data => {
+           for (let entry in data['tasse']) {
+               if(data['tasse'][entry].pagata) {
+                   this.tasse.push(data['tasse'][entry]);   
+               }
+           }
+       });
   }
 
   ionViewDidLoad() {
