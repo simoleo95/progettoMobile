@@ -45,12 +45,12 @@ public class Login {
         this.psw = psw;
     }
 
-    public int getMatricla() {
+    public int getMatricola() {
         return matricola;
     }
 
-    public void setMatricla(int matricla) {
-        this.matricola = matricla;
+    public void setMatricola(int matricola) {
+        this.matricola = matricola;
     }
     
     
@@ -79,11 +79,12 @@ public class Login {
     }
     
     
-    public String loginn(String user, String psw) throws SQLException{
+    public Login loginn(String user, String psw) throws SQLException{
          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
          Statement stmt = null;
-         String output = "asd"; 
-    String query = " select user , psw  " +
+         
+         Login outt = new Login();
+    String query = " select user , psw ,matricola  " +
                    " from  MYUNIVAQ.Login "+
                     " WHERE Login.user =\'"+ user +"\'" ;
      
@@ -93,35 +94,43 @@ public class Login {
         ResultSet rs = stmt.executeQuery(query);
         String tempu = "";
         String tempp= "";
+        
         while (rs.next()) {
             tempu= rs.getString("user");
             tempp= rs.getString("psw");
+            outt.setMatricola(rs.getInt("matricola"));
+            outt.setUser(rs.getString("user"));
             
+            outt.setToken("token");
             }
-        if(tempu != null && tempp != null ){
-                        output="user inesistente ";
-                        if (tempu.equals(user)) { output= "psw errata";
+        if(tempu != null && tempp != null  ){
+            
+            outt.setToken("user inesistente ");
+                       
+                        if (tempu.equals(user)) { 
+                         outt.setToken("psw errata");
                                                     if (tempp.equals(psw)) {
                                                         TokenGenerator t = new TokenGenerator();                
-                                                 output = t.generateToken(user);
-                                                 
+                                               String  outp = t.generateToken(user);
+                                                 outt.setToken(outp);
+                                                 System.out.println(outp);
                                                    // create the java mysql update preparedstatement
                                                         String query2 = "UPDATE  MYUNIVAQ.Login "
-                                                                         +" SET token = '"+ output +"' "
+                                                                         +" SET token = '"+ outp +"' "
                                                                          + " WHERE user = '"+user+"'";
-                                                        System.out.println(query2);
+                                                         
                                                         stmt.cancel();
                             int executeUpdate = stmt.executeUpdate(query2);
-                                                 System.out.println("risutato query 2===="+ executeUpdate);
-                                                 System.out.println(output);
+                                                
                                                  if(executeUpdate > 0 ){
-                                                    
+                                                     
                                                       boolean ok = Log.Log("Login effettuato, modificato il token", user);
                                                       if(ok== false){
-                                                      output = "errore Log";
+                                                      System.out.println("error log");
                                                       }
                                                   
                                                  }
+                                                
                                                  
                                                    
                                                     }
@@ -133,7 +142,7 @@ public class Login {
         if (stmt != null) { stmt.close(); }
     }
  
-        return output;
+        return outt;
     }
     
     public boolean verifica() throws SQLException{

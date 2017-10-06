@@ -17,7 +17,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
-import obj.Log;
 import obj.Login;
 
 /**
@@ -69,8 +68,8 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String Login(Login log) {
-     String out = null;
+    public Login Login(Login log) {
+     Login out = new Login();
         try {
             out = log.loginn(log.getUser(), log.getPsw());
         } catch (SQLException ex) {
