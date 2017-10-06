@@ -7,12 +7,14 @@ import { JsonDataProvider } from '../../providers/json-data/json-data';
 export class User {
   // Qui informazioni riguardanti lo studente
     
-  name: string;
-  email: string;
+  user: string;
+  matricola: number;
+  token: string;
  
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
+  constructor(user: string, matricola: number, token: string) {
+    this.user = user;
+    this.matricola = matricola;
+    this.token = token;
   }
 }
 
@@ -20,25 +22,25 @@ export class User {
 export class AuthServiceProvider {
     
   currentUser: User;
-  token: any = null;
+  temp: any = null;
      
   constructor(public JsonService: JsonDataProvider) { }
 
   public login(credentials) {
     if (credentials.user === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
-    } else {
+    } 
+    else {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
         this.JsonService.getUser(credentials.user, credentials.password).then(data => {
             if(data != "psw errata")
-                this.token = data;
+                this.temp = data;
         });
          
-        let access = (this.token !== null);
-          
+        let access = (this.temp !== null);
         // Cambiare dati con quelli veri
-        this.currentUser = new User('Cristiano Orsetti', 'cristiano.orsetti@student.univaq.it');
+        this.currentUser = new User(this.temp['user'], this.temp['matricola'], this.temp['token']);
         observer.next(access);
         observer.complete();
       });

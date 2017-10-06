@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="appmobileee" type="javax.sql.DataSource">#Fri Oct 06 17:09:16 CEST 2017
+jdbcDriver=com.mysql.jdbc.Driver
+password=mysql
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/MYUnivaq?zeroDateTimeBehavior\=convertToNull
+</Resource>
+</resources>

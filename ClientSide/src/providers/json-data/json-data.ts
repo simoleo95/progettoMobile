@@ -57,6 +57,7 @@ export class JsonDataProvider {
              }
              
               this.http.post('http://localhost:8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
+                 .map(res => res.json())
                  .subscribe(data => {
                      console.log(JSON.stringify(body));
                      this.data = data;
