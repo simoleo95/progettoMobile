@@ -66,7 +66,7 @@ public class GenericResource {
     @Produces({ MediaType.APPLICATION_JSON})
     public Response corsoid(@PathParam("user") String a,@PathParam("psw") String p) throws SQLException {    
      Login l = new Login();
-        String token = l.loginn(a, p);
+        Login token = l.loginn(a, p);
        return Response.ok(token).build();
     }
     @GET

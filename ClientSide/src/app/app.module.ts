@@ -33,6 +33,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { JsonDataProvider } from '../providers/json-data/json-data';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { JsonDataProvider } from '../providers/json-data/json-data';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp,{tabsPlacement: 'bottom'})
+    IonicModule.forRoot(MyApp,{tabsPlacement: 'bottom'}),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,7 +103,7 @@ import { JsonDataProvider } from '../providers/json-data/json-data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    JsonDataProvider
+    JsonDataProvider,
   ]
 })
 export class AppModule {}

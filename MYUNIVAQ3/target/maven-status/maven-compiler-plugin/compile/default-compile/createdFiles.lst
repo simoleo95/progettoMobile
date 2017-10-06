@@ -1,10 +1,15 @@
 gid\myunivaq3\GenericResource.class
 obj\Studente.class
 obj\Aula.class
+obj\Log.class
+gid\myunivaq3\StudenteResource.class
 obj\Corso.class
+com\timebuddy\gae\server\service\TokenGenerator.class
 gid\myunivaq3\ApplicationConfig.class
 obj\Appello.class
+obj\Login.class
 obj\Professore.class
 obj\EsamiSvolti.class
+gid\myunivaq3\LoginResource.class
 obj\Materia.class
 obj\Tassa.class
