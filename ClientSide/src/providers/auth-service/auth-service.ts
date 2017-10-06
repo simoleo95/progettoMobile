@@ -36,13 +36,14 @@ export class AuthServiceProvider {
         this.JsonService.getUser(credentials.user, credentials.password).then(data => {
             if(data != "psw errata")
                 this.temp = data;
+            
+            let access = (this.temp !== null);
+            
+            // Cambiare dati con quelli veri
+            this.currentUser = new User(this.temp['user'], this.temp['matricola'], this.temp['token']);
+            observer.next(access);
+            observer.complete();
         });
-         
-        let access = (this.temp !== null);
-        // Cambiare dati con quelli veri
-        this.currentUser = new User(this.temp['user'], this.temp['matricola'], this.temp['token']);
-        observer.next(access);
-        observer.complete();
       });
     }
   }

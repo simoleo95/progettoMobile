@@ -17,7 +17,8 @@ export class JsonDataProvider {
         console.log('Hello JsonDataProvider Provider');
     }
     
-    getData() {
+    getData(utente) {
+        
         if(this.data) {
             return Promise.resolve(this.data);
         }
@@ -28,11 +29,14 @@ export class JsonDataProvider {
             headers.append('Content-Type','application/json');
 
             let body = {
-                "user":"cris",
-                "token":"cris:42d4f17d7b7f0e7"
+                "user": utente.user,
+                "token": utente.token
             };
-
-            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/236425', JSON.stringify(body), {headers: headers})
+            
+            console.log("Body: " + body);
+            console.log("Url: " + 'http://localhost:8088/MYUNIVAQ3/rest/' + utente.matricola)
+            
+            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/' + utente.matricola, JSON.stringify(body), {headers: headers})
                 .map(res => res.json())
                 .subscribe(data => {
                     // console.log(data);
