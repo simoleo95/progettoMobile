@@ -41,5 +41,28 @@ export class JsonDataProvider {
                 });
         });
     }
+    
+    getUser(user, password) {
+         if(this.data) {
+             return Promise.resolve(this.data);
+         }
+         
+         return new Promise(resolve => {
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+             
+             let body = {
+                 "user":user,
+                 "psw":password
+             }
+             
+              this.http.post('http://localhost:8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
+                 .subscribe(data => {
+                     console.log(JSON.stringify(body));
+                     this.data = data;
+                     resolve(this.data);
+                 });
+         });
+     }
 
 }
