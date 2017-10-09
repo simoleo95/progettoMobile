@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class Studente {
     private List<EsamiSvolti> libretto;
     private List<Materia> corsiScelti;
     private List<Tassa> tasse;
+    private List<Appello> appelli;
     
 
     public Studente() {
@@ -42,6 +45,14 @@ public class Studente {
         this.corso = corso;
     }
 
+    public List<Appello> getAppelli() {
+        return appelli;
+    }
+
+    public void setAppelli(List<Appello> appelli) {
+        this.appelli = appelli;
+    }
+    
     public List<Materia> getCorsiScelti() {
         return corsiScelti;
     }
@@ -134,6 +145,7 @@ public class Studente {
         LoadLibretto(i);
         loadCorsiScelti(i);
          loadTasse(i);
+         LoadAppelli();
     }catch (SQLException e ) {
         
     } finally {
@@ -225,5 +237,48 @@ public class Studente {
             
     }
     
+        public void LoadAppelli() throws SQLException{
+           List<String> mancanti = new ArrayList<>();
+            List<String> mancanti2 = new ArrayList<>();
+           List<String> svolti = new ArrayList<>();
+            for (Iterator<EsamiSvolti> iterator = libretto.iterator(); iterator.hasNext();) {
+                String next = iterator.next().getIdMateria();
+                svolti.add(next);
+            }
+            for (Iterator<Materia> iterator2 = this.corso.getMaterie().iterator(); iterator2.hasNext();) {
+                String next = iterator2.next().getId();
+                mancanti.add(next);
+            }
+            for (Iterator<Materia> iterator3 = this.corsiScelti.iterator(); iterator3.hasNext();) {
+                String next = iterator3.next().getId();
+                mancanti.add(next);
+            }
+            mancanti2.addAll(mancanti);
+        for (String next : mancanti2) {
+               for (String next2 :  svolti) {
+                   if(next.equals(next2)){
+                        System.out.println(next +"  = "+ next2);
+                       mancanti.remove(next);
+                       break;
+                   }
+               }
+        }
+         for (String next2 :  mancanti) {
+                   
+                        System.out.println("manca = "+ next2);
+                      
+                   }
+        
+        List<Appello> la = new LinkedList<>();
+        for (String next2 : mancanti) {
+            Appello a = new Appello();
+           boolean x = a.appellidata(next2);
+            if (x) la.add(a);
+            
+        }
+         this.setAppelli(la);
+         
+    }
+            
+    }
      
-}

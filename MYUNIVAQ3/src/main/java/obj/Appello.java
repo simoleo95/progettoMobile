@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -102,7 +103,44 @@ public class Appello {
     
 }
     
+  public boolean appellidata(String i) throws SQLException{
+      boolean out = false;
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+         java.util.Date date = new java.util.Date();
+    String query = "select * " +
+                   "from  MYUNIVAQ.Appello "+
+                   "WHERE Appello.fk_materia = '" + i +"' AND Appello.data_esame > "+ dateFormat.format(date)  ;
+    try{
+         System.out.println(query);
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            System.out.println("qualcosa");
+            out = true;
+            this.id = rs.getInt("id");
+            Materia m = new Materia();
+            m.Load(rs.getString("fk_materia"));
+            this.materia = m;
+            Date d = rs.getDate("data_esame");
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            setData(df.format(d));
+            this.descrizione= rs.getString("descrizione");
+            Aula a = new Aula();
+            a.Load(rs.getString("aula"));
+           this.aula =a;
+        }
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
     
+  
+  return out;
+  
+  }
     
     
 }

@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import obj.Appello;
 import obj.Corso;
 import obj.EsamiSvolti;
 import obj.Login;
@@ -127,6 +128,20 @@ public class StudenteResource {
       s.Load(a); 
            List<Tassa> tasse = s.getTasse();
        return Response.ok(tasse).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+      @POST
+    @Path("appelli")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response appelli(@PathParam("matricola") int a , Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+           List<Appello> appelli = s.getAppelli();
+       return Response.ok(appelli).build();
        }
        return Response.ok("errore").build();
     }
