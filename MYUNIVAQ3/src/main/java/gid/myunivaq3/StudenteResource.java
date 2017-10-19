@@ -68,6 +68,10 @@ public class StudenteResource {
       Studente s = new Studente();
       s.Load(a); 
         List<EsamiSvolti> libretto = s.getLibretto();
+           for (EsamiSvolti esamiSvolti : libretto) {
+               esamiSvolti.lite();
+               
+           }
        return Response.ok(libretto).build();
        }
        return Response.ok("errore").build();
@@ -95,6 +99,7 @@ public class StudenteResource {
       Studente s = new Studente();
       s.Load(a); 
            Corso corso = s.getCorso();
+           corso.lite();
        return Response.ok(corso).build();
        }
        return Response.ok("errore").build();

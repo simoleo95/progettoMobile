@@ -44,17 +44,21 @@ public class Aula {
     }
     
     public void Load (String i) throws SQLException{
+        
      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
         Statement stmt = null;
     String query = "select * " +
-                   "from  MYUNIVAQ.Aula "+
-                    "WHERE Aula.id =" +i ;
+                   " from  MYUNIVAQ.Aula "+
+                    " WHERE Aula.id = '" +i+"'" ;
     try{
+        
          stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query);
+        
         while (rs.next()) {
             this.id = rs.getString("id");
             this.blocco = rs.getString("blocco");
+            
         }
     
     }catch(SQLException e ) {

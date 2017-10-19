@@ -29,6 +29,7 @@ public class Materia {
     private int cfu;
     private String tipocfu;
     private List<Professore> professori ;
+    private List<String> profurl;
     public Materia() {
     }
 
@@ -101,12 +102,28 @@ public class Materia {
     public void setProfessori(List<Professore> professori) {
         this.professori = professori;
     }
+
+    public List<String> getProfurl() {
+        return profurl;
+    }
+
+    public void setProfurl(List<String> profurl) {
+        this.profurl = profurl;
+    }
     
     public void addProfessore(int i ,LinkedList<Professore> lp) throws SQLException {
         Professore asd = new Professore();
         asd.Load(i);
         lp.add(asd);
         setProfessori(lp);
+   
+       
+    }
+     public void addProfessoreurl(int i ,LinkedList<String> lp) throws SQLException {
+        String asd = "http://localhost:8088/MYUNIVAQ3/rest/generic/professore/"+i;
+        
+        lp.add(asd);
+        setProfurl(lp);
    
        
     }
@@ -158,9 +175,11 @@ public class Materia {
         stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query);
          List<Professore> lp = new LinkedList<>();
+         List<String> lp2 = new LinkedList<>();
         while (rs.next()) {
            
            addProfessore(rs.getInt("fk_professore"), (LinkedList<Professore>) lp);
+            addProfessoreurl(rs.getInt("fk_professore"), (LinkedList<String>) lp2);
           }
         
         
@@ -173,4 +192,15 @@ public class Materia {
     }
 }
     
+
+public void lite(){
+        this.professori =null;
+                this.id =null;
+                        this.anno =null;
+                              
+}
+public void lite2(){
+        this.professori =null;
+               
+}
 }

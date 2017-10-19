@@ -23,11 +23,20 @@ public class Corso {
     private String descrizione ;
     
     private List<Materia> materie;
+    private List<String> materieurl;
 
     public Corso(String id, String nome, String descrizione) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
+    }
+
+    public List<String> getMaterieurl() {
+        return materieurl;
+    }
+
+    public void setMaterieurl(List<String> materieurl) {
+        this.materieurl = materieurl;
     }
 
     public Corso() {
@@ -82,6 +91,14 @@ public class Corso {
    
        
     }
+     public void addMateria2(String i ,LinkedList<String> lp) throws SQLException {
+        String asd = "http://localhost:8088/MYUNIVAQ3/rest/generic/materia/"+i;
+        
+        lp.add(asd);
+        setMaterieurl(lp);
+   
+       
+    }
        
     public void Load(String i) throws SQLException{
         
@@ -120,11 +137,13 @@ public class Corso {
         stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         List<Materia> lp = new LinkedList<>();
+        List<String> lp2 = new LinkedList<>();
         while (rs.next()) {
             addMateria(rs.getString("id_materia"), (LinkedList<Materia>) lp);
+            addMateria2(rs.getString("id_materia"), (LinkedList<String>) lp2);
           }
         setMaterie(lp);
-       
+        setMaterieurl(lp2);
         
     }catch (SQLException e ) {
         
@@ -134,4 +153,8 @@ public class Corso {
          
     }
 }
+
+    public void lite(){
+    this.materie = null;
+    }
 }

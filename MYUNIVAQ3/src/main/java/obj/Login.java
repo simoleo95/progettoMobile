@@ -174,39 +174,105 @@ public class Login {
         return output;
     }
     
-//    public int crea() throws SQLException{
-//        int i = 0;
-//          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
-//        Statement stmt = null;
-//         System.out.println("param1 = " + this.user );
-//    System.out.println("param2 = " + this.matricola );
-////    String query =  "INSERT INTO MYUNIVAQ.Login (user, psw, email, matricola)"
-////            + " VALUES ('"+ this.user +"', '"+ this.psw +"', '"+ this.email +"', "+ this.matricola +" )";
-//     String query =  "INSERT INTO MYUNIVAQ.Login (user , psw , email , matricola) "
-//            + " VALUES ('qweqwe' , 'qwe' , 'qwe@qwe.qwe' , 111111 )";
-//    try {
-//        System.out.println("param2 = " + query );
-//         stmt = con.createStatement();
-//        ResultSet rs = stmt.executeQuery(query);
-////        i = stmt.executeUpdate(query);
-//        if(rs!= null){
-//        i=1;
-//        }
-//       
-//        
-//    }catch (SQLException e ) {
-//         String r = e.getSQLState();
-//         System.out.println("r  = "+ r );
-//    } finally {
-//        if (stmt != null) { stmt.close(); }
-//    }
-//            
-//        //controlla se il token è uguale se non è ugale ne da uno nuovo senno ristituisce quello vecchio
-//        // setta il token e restituisce il token 
-//        //aggiungi anche nel db Log che ha fatto un login 
-//        
-//        //crea un nuovo utente 
-//        
-//        return i ;
-//    }
+    public int crea() throws SQLException{
+        int i = 0;
+          Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+         System.out.println("param1 = " + this.user );
+    System.out.println("param2 = " + this.matricola );
+    String query =  "INSERT INTO MYUNIVAQ.Login (user, psw, email, matricola)"
+            + " VALUES ('"+ this.user +"', '"+ this.psw +"', '"+ this.email +"', "+ this.matricola +" )";
+   
+    try {
+        System.out.println("param2 = " + query );
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+//        i = stmt.executeUpdate(query);
+        if(rs!= null){
+        i=1;
+        }
+       
+        
+    }catch (SQLException e ) {
+         String r = e.getSQLState();
+         System.out.println("r  = "+ r );
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+            
+        //controlla se il token è uguale se non è ugale ne da uno nuovo senno ristituisce quello vecchio
+        // setta il token e restituisce il token 
+        //aggiungi anche nel db Log che ha fatto un login 
+        
+        //crea un nuovo utente 
+        
+        return i ;
+    }
+
+    public boolean logout(String user, String token) throws SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+         Statement stmt = null;
+         boolean out = false;
+         Login outt = new Login();
+    String query = " select user , token ,matricola  " +
+                   " from  MYUNIVAQ.Login "+
+                    " WHERE Login.user =\'"+ user +"\'" ;
+     
+    try {
+        
+        stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        String tempu = "";
+        String tempp= "";
+        
+        while (rs.next()) {
+            tempu= rs.getString("user");
+            tempp= rs.getString("token");
+            outt.setMatricola(rs.getInt("matricola"));
+            outt.setUser(rs.getString("user"));
+            
+            //outt.setToken("token");
+            }
+        if(tempu != null && tempp != null  ){
+            
+            outt.setToken("user inesistente ");
+                       
+                        if (tempu.equals(user)) { 
+                         outt.setToken("psw errata");
+                                                    if (tempp.equals(token)) {
+                                                                    
+                                               String  outp = "apritisesamo";
+                                               
+                                                 
+                                                   // create the java mysql update preparedstatement
+                                                        String query2 = "UPDATE  MYUNIVAQ.Login "
+                                                                         +" SET token = '"+ outp +"' "
+                                                                         + " WHERE user = '"+user+"'";
+                                                         
+                                                        stmt.cancel();
+                            int executeUpdate = stmt.executeUpdate(query2);
+                                                out =true;
+                                                 if(executeUpdate > 0 ){
+                                                     
+                                                      boolean ok = Log.Log("logout effettuato", user);
+                                                      if(ok== false){
+                                                      System.out.println("error log");
+                                                      }
+                                                  
+                                                 }
+                                                
+                                                 
+                                                   
+                                                    }
+                         }}//end if 
+       
+    }catch (SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+ 
+        return out;
+    }
+    
 }

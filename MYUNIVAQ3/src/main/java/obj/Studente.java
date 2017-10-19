@@ -139,6 +139,7 @@ public class Studente {
             this.dataDiNascita = df.format(d);
             Corso co = new Corso();
             co.Load(rs.getString("corso"));
+            //co.lite();
             setCorso(co);
             }
         
@@ -169,12 +170,14 @@ public class Studente {
         while (rs.next()) {
             EsamiSvolti asd = new EsamiSvolti();
             asd.setIdMateria(rs.getString("fk_materia")); 
+            System.out.println("aaaaaaaaaaaaaaaaaaa "+rs.getString("fk_materia"));
             asd.setVoto(rs.getInt("voto"));
             Appello ape = new Appello();
             ape.Load(rs.getInt("fk_appello"));
             asd.setAppello(ape);
+            asd.setIdStudente(i);
             le.add(asd);
-            
+           asd.setMateriaload(rs.getString("fk_materia"));
             }   
         setLibretto(le);
     }catch (SQLException e ) {
@@ -272,7 +275,7 @@ public class Studente {
         List<Appello> la = new LinkedList<>();
         for (String next2 : mancanti) {
             Appello a = new Appello();
-           boolean x = a.appellidata(next2);
+           boolean x = a.appellidata2(next2);
             if (x) la.add(a);
             
         }

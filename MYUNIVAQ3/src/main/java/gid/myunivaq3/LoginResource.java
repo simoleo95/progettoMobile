@@ -54,13 +54,13 @@ public class LoginResource {
     public String Crea(Login log) throws SQLException{
         
         
-//       // int i =    log.crea();
-//        System.out.println(i);
-//        if(i>0){
-//            return "ok";
-//        }else{
+        int i =    log.crea();
+        System.out.println(i);
+        if(i>0){
+            return "ok";
+        }else{
             return "errore";
-//        }
+        }
         
     }
     
@@ -78,6 +78,19 @@ public class LoginResource {
         return out ;
     }
     
+    @POST
+    @Path("logout")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String Logout(Login log) {
+     String out = "error";
+        try {
+            if( log.logout(log.getUser(), log.getToken())) out ="succes";
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return out ;
+    }
     /**
      * PUT method for updating or creating an instance of LoginResource
      * @param content representation for the resource

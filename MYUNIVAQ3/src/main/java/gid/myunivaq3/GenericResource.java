@@ -6,6 +6,7 @@
 package gid.myunivaq3;
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -14,8 +15,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import obj.Appello;
+import obj.Aula;
+import obj.Corso;
 import obj.Login;
 import obj.Materia;
+import obj.Professore;
 import obj.Studente;
 
 /**
@@ -23,7 +28,7 @@ import obj.Studente;
  *
  * @author ASUS TRONY
  */
-@Path("test")
+@Path("generic")
 public class GenericResource {
 
     @Context
@@ -42,52 +47,60 @@ public class GenericResource {
    
     
     @GET
-    @Path("{matricola}")
+    @Path("corso/{corso}")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response findmatricolaa(@PathParam("matricola") int a) throws SQLException {    
-      Studente s = new Studente();
-      s.Load(a); 
-      Materia m = new Materia();
-      m.Load("aaa");  
-       return Response.ok(s).build();
+    public Response findmatricolaa(@PathParam("corso") String a) throws SQLException {    
+     Corso c = new Corso();
+      c.Load(a);
+      
+//        List<Materia> materie = c.getMaterie();
+//        for (Materia materia : materie) {
+//            materia.lite();
+//            
+//        }
+//        c.setMaterie(materie);
+      c.lite();
+       return Response.ok(c).build();
     }
    @GET
-    @Path("materia")
+    @Path("materia/{materia}")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response materiaid(@PathParam("matricola") int a) throws SQLException {    
-      Studente s = new Studente();
-      s.Load(a); 
+    public Response materiaid(@PathParam("materia") String a) throws SQLException {    
+       
       Materia m = new Materia();
-      m.Load("aaa");  
-       return Response.ok(s).build();
+      m.Load(a);
+      m.lite2();
+      
+     
+       return Response.ok(m).build();
     }
+    
     @GET
-    @Path("{user}/{psw}")
+    @Path("professore/{professore}")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response corsoid(@PathParam("user") String a,@PathParam("psw") String p) throws SQLException {    
-     Login l = new Login();
-        Login token = l.loginn(a, p);
-       return Response.ok(token).build();
+    public Response professore(@PathParam("professore") int a) throws SQLException {    
+      Professore p = new Professore();
+      p.Load(a);
+      return Response.ok(p).build();
     }
+    
     @GET
-    @Path("libretto")
+    @Path("appello/{appello}")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response librettoid(@PathParam("matricola") int a) throws SQLException {    
-      Studente s = new Studente();
-      s.Load(a); 
-      Materia m = new Materia();
-      m.Load("aaa");  
-       return Response.ok(s).build();
+    public Response appello(@PathParam("appello") int a) throws SQLException {    
+      
+      Appello ap = new Appello();
+      ap.Load(a);
+       return Response.ok(ap).build();
     }
-    @GET
-    @Path("{corsiscelti}")
+    
+      @GET
+    @Path("aula/{aula}")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response corsiscelti(@PathParam("matricola") int a) throws SQLException {    
-      Studente s = new Studente();
-      s.Load(a); 
-      Materia m = new Materia();
-      m.Load("aaa");  
-       return Response.ok(s).build();
+    public Response aula(@PathParam("aula") String a) throws SQLException {    
+      Aula au = new Aula();
+      au.Load(a);
+       return Response.ok(au).build();
     }
     
 }
