@@ -16,25 +16,21 @@ import { QuestionarioPage} from '../questionario/questionario'
 })
 export class DettaglioAppelliPage {
   
-  appello = {
-    nomeMateria: "Applicazioni per Dispositivi Mobili",
-    docene: "Amleto De Salle",
-    data: "01/01/1001",
-    ora: "10:00",
-    tipologia: "Orale",
-    aula: "A1.2",
-    scadenza: "30/12/1000"
-  }
+  appello: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[], data: string,
+			aula: string, descrizione: string, scadenza: string, tipologia: string} = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
+	  this.appello = navParams.get('appello');
+	  this.appello.scadenza = 'Non disponibile';
+	  this.appello.tipologia = 'Non disponibile';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DettaglioAppelliPage');
   }
 
-  Navigate() {
-      this.appCtrl.getRootNav().push(QuestionarioPage);
+  Navigate(idMateria: string) {
+      this.appCtrl.getRootNav().push(QuestionarioPage, {materia: idMateria});
   }
 
   openAvatar() {

@@ -19,12 +19,13 @@
         <ion-row style="border-bottom: 1px solid #AAA;">
             <ion-col col-12>
                 <p>Nome Materia: {{appello.nomeMateria}}</p>
-                <p>Docente: {{appello.docente}}</p>
-                <p>Data: Appello {{appello.data}}</p>
-                <p>Ora: Appello {{appello.ora}}</p>
+                <p>Docenti:</p>
+				<p ion-item *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
+                <p>Data: {{appello.data}}</p>
                 <p>Tipologia: {{appello.tipologia}}</p>
                 <p>Aula: {{appello.aula}}</p>
                 <p>Data Scadenza: {{appello.scadenza}}</p>
+				<p>Descrizione: {{appello.descrizione}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
