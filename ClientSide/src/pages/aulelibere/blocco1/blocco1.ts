@@ -13,6 +13,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'blocco1.html'
 })
 export class Blocco1Page {
+  auleLibere = [
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"},
+    {nome: "0.5", orario: "16:00"},
+    {nome: "1.7", orario: "25:70"},
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"},
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"},
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"},
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"},
+    {nome: "2.5", orario: "16:00"},
+    {nome: "1.7", orario: "13:30"}
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

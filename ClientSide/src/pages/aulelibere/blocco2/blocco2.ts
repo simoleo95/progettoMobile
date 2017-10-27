@@ -13,6 +13,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'blocco2.html',
 })
 export class Blocco2Page {
+  auleLibere = [
+    {nome: "C1.9", orario: "18:00"}
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

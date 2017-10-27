@@ -15,42 +15,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
     <ion-card (click)="Navigate()">
         <ion-card-content>
             <ion-grid>
-                <ion-row>
+                <ion-row ion-item *ngFor="let appello of listaAppelli">
                     <ion-col col-9>
-                        <p class="materia" style="font-weight: bold;font-size: 18px;">Applicazioni per Dispositivi Mobili</p>
-                        <p>Data</p>
+                        <p class="materia" style="font-weight: bold;font-size: 18px;">{{appello.nomeMateria}}</p>
+                        <p>{{appello.data}}</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
     </ion-card>
-
-    <ion-card (click)="Navigate()">
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-9>
-                        <p class="materia" style="font-weight: bold;font-size: 18px;">Analisi Numerica</p>
-                        <p>Data</p>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
-
-    <ion-card (click)="Navigate()">
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-9>
-                        <p class="materia" style="font-weight: bold;font-size: 18px;">Nome Materia</p>
-                        <p>Data</p>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
+  </ion-list>
 </ion-content>

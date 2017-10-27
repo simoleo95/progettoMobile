@@ -5,17 +5,19 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+  <ion-list>
+    <ion-card ion-item *ngFor="let aulaLibera of auleLibere">
         <ion-card-header style="text-align:center;">
-            <p style="font-size: 21px;">Aula C1.9</p>
+            <p style="font-size: 21px;">Aula {{aulaLibera.nome}}</p>
         </ion-card-header>
         <ion-card-content>
             <ion-grid>
                 <ion-row>
                     <ion-col col-5>Fino alle:</ion-col>
-                    <ion-col col-7 style="font-size: 25px;">15:30</ion-col>
+                    <ion-col col-7 style="font-size: 25px;">{{aulaLibera.orario}}</ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
     </ion-card>
+  </ion-list>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="text-align:center;padding-right:50px;">Nome materia</ion-title>
+    <ion-title style="text-align:center;padding-right:50px;">{{dettaglio.nomeMateria}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,9 +9,9 @@
         <!-- Righe per medie -->
         <ion-row style="border-bottom: 1px solid #AAA;">
             <ion-col col-12>
-                <p>Docente:</p>
-                <p>A.A.:</p>
-                <p>Crediti:</p>
+                <p>Docente: {{dettaglio.docente}}</p>
+                <p>A.A.: {{dettaglio.annoAccademico}}</p>
+                <p>Crediti: {{dettaglio.crediti}}</p>
             </ion-col>
         </ion-row>
         <ion-row>

@@ -15,6 +15,16 @@ import { QuestionarioPage} from '../questionario/questionario'
   templateUrl: 'dettaglioappelli.html',
 })
 export class DettaglioAppelliPage {
+  
+  appello = {
+    nomeMateria: "Applicazioni per Dispositivi Mobili",
+    docene: "Amleto De Salle",
+    data: "01/01/1001",
+    ora: "10:00",
+    tipologia: "Orale",
+    aula: "A1.2",
+    scadenza: "30/12/1000"
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
   }

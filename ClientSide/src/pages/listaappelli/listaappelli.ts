@@ -15,6 +15,9 @@ import { DettaglioAppelliPage } from '../dettaglioappelli/dettaglioappelli'
   templateUrl: 'listaappelli.html',
 })
 export class ListaAppelliPage {
+  listaAppelli = [
+      {nomeMateria: "Applicazione per Dispositivi Mobili", data: "01/01/1001"}
+  ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
   }
