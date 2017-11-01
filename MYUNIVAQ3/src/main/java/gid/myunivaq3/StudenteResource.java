@@ -12,6 +12,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.Response;
 import obj.Appello;
 import obj.Corso;
 import obj.EsamiSvolti;
+import obj.Log;
 import obj.Login;
 import obj.Materia;
 import obj.Studente;
@@ -149,5 +151,39 @@ public class StudenteResource {
        return Response.ok(appelli).build();
        }
        return Response.ok("errore").build();
+    }
+    @POST
+    @Path("appelli/iscritti")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response appelliiscritti(@PathParam("matricola") int a , Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+           List<Appello> appelli = s.appelliiscritti();
+       return Response.ok(appelli).build();
+       }
+       return Response.ok("errore").build();
+    }
+    
+    @PUT
+    @Path("iscrizioneappello/{appello}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.TEXT_PLAIN})
+    public String iscriviti(@PathParam("matricola") int a ,@PathParam("appello") int b , Login log) throws SQLException {
+       
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+      System.out.println("studente caricato");
+       if(s.iscriviti(b)){
+       if(Log.Log("iscritto all'appello " ,log.getUser())){
+      System.out.println("error log");
+       }   
+       return "iscrizione effettuata con successo";}
+       else{
+       return "errore nel server";}
+       }
+       return "errore";
     }
 }

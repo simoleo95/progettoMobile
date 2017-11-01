@@ -190,4 +190,29 @@ public class Appello {
   
   }
     
+     public int quantiIscritti () throws SQLException{
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+        int i =0;
+    String query = "select * " +
+                   " from  MYUNIVAQ.iscrizione "+
+                    " WHERE iscrizione.fk_appello = " + this.id ;
+    try{
+        
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+           i++;
+            
+        }
+    
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+        
+        return i;
+    }
 }

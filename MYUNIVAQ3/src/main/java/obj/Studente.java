@@ -282,6 +282,59 @@ public class Studente {
          this.setAppelli(la);
          
     }
+         
+        public boolean iscriviti (int appello) throws SQLException{
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+        boolean i = false;
+    String query = "INSERT INTO `MYUNIVAQ`.`iscrizione` (`fk_studente`, `fk_appello`) VALUES ('"+this.matricola+"', '"+appello+"')";
+    System.out.println("INSERT INTO `MYUNIVAQ`.`iscrizione` (`fk_studente`, `fk_appello`) VALUES ('"+this.matricola+"', '"+appello+"')");
+    try{
+        
+       stmt = con.createStatement();
+       int rs = stmt.executeUpdate(query);
+        i = rs > 0;
+       
+      
             
+        
+        }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+        
+        return i;
+    }
+        
+        public List<Appello> appelliiscritti() throws SQLException{
+            List<Appello> a = new LinkedList<>();
+              Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+        int i =0;
+    String query = "select * " +
+                   " from  MYUNIVAQ.iscrizione "+
+                    " WHERE iscrizione.fk_studente = " + this.matricola ;
+    try{
+        
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+           int appello= rs.getInt("fk_appello");
+           Appello app= new Appello();
+           app.Load(appello);
+           a.add(app);  
+        }
+    
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+       
+            return a;
+        }
+        
     }
      
