@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+
+import { IonicStorageModule } from '@ionic/storage';
+import { FeedProvider } from './../providers/feed/feed';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -24,7 +29,7 @@ import { AulePage } from '../pages/aulelibere/aule';
 import { Blocco0Page } from '../pages/aulelibere/blocco0/blocco0';
 import { Blocco1Page } from '../pages/aulelibere/blocco1/blocco1';
 import { Blocco2Page } from '../pages/aulelibere/blocco2/blocco2';
-import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
+//import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
 import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
 import { QuestionarioPage } from '../pages/questionario/questionario';
 import { LoginPage } from '../pages/login/login';
@@ -59,7 +64,7 @@ import { HttpModule } from '@angular/http';
     Blocco0Page,
     Blocco1Page,
     Blocco2Page,
-    DettaglioAppelliPage,
+  //  DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
     LoginPage
@@ -67,7 +72,8 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{tabsPlacement: 'bottom'}),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -93,7 +99,7 @@ import { HttpModule } from '@angular/http';
     Blocco0Page,
     Blocco1Page,
     Blocco2Page,
-    DettaglioAppelliPage,
+    //DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
     LoginPage
@@ -104,6 +110,8 @@ import { HttpModule } from '@angular/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     JsonDataProvider,
+    FeedProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

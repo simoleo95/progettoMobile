@@ -3,7 +3,7 @@
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
-      </button>  
+      </button>
     </ion-buttons>
     <ion-title style="text-align:center;">Home</ion-title>
     <ion-buttons right>
@@ -14,103 +14,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-	<ion-slides pager style="height: 70%;">
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar secondary>
+      <ion-title>Recent articles</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  		<ion-slide >
-    		
-				<ion-item>
-    				<ion-avatar item-start>
-      				<img src="assets/img/profilo.jpg">
-    				</ion-avatar>
-    				<h2>Autore1</h2>
-    				<p>Marzo 5, 2017</p>
-  					</ion-item>
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let feed of feeds" (click)="openFeed(feed)">
+        {{feed.title}}
+      </button>
+    </ion-list>
+    <button ion-button full (click)="addFeed()" action secondary>
+      <ion-icon name="add"></ion-icon> Add Feed
+    </button>
+  </ion-content>
 
-  					<img src="assets/img/news.jpg">
+</ion-menu>
 
-  					<ion-card-content>
-   				 		<p>Notizia dell'ultima ora in questa sessione i professori metteranno tutti 17 e due figure a tutti gli studenti che sosterrano gli esami.</p>
-  					</ion-card-content>
-
-  					<ion-row>
-    					<ion-col>
-      						<button ion-button icon-left clear small>
-        						<ion-icon name="thumbs-up"></ion-icon>
-        						<div>12 Likes</div>
-      						</button>
-   						 </ion-col>
-    					<ion-col>
-      						<button ion-button icon-left clear small>
-        						<ion-icon name="text"></ion-icon>
-        						<div>4 Comments</div>
-      						</button>
-    					</ion-col>
-    					<ion-col center text-center>
-      						<ion-note>
-        						11h ago
-      						</ion-note>
-    					</ion-col>
-  					</ion-row>
-			
-  		</ion-slide>
-
-  		<ion-slide style="background-color: blue">
-    		<h2>Slide 2</h2>
-  		</ion-slide>
-
-  		<ion-slide style="background-color: red">
-    		<h2>Slide 3</h2>
-  		</ion-slide>
-
-</ion-slides>
-<ion-slides pager style="height: 70%">
-
-      <ion-slide >
-        
-        <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/img/profilo.jpg">
-            </ion-avatar>
-            <h2>Autore1</h2>
-            <p>Marzo 5, 2017</p>
-            </ion-item>
-
-            <img src="assets/img/news.jpg">
-
-            <ion-card-content>
-              <p>Notizia dell'ultima ora in questa sessione i professori metteranno tutti 17 e due figure a tutti gli studenti che sosterrano gli esami.</p>
-            </ion-card-content>
-
-            <ion-row>
-              <ion-col>
-                  <button ion-button icon-left clear small>
-                    <ion-icon name="thumbs-up"></ion-icon>
-                    <div>12 Likes</div>
-                  </button>
-               </ion-col>
-              <ion-col>
-                  <button ion-button icon-left clear small>
-                    <ion-icon name="text"></ion-icon>
-                    <div>4 Comments</div>
-                  </button>
-              </ion-col>
-              <ion-col center text-center>
-                  <ion-note>
-                    11h ago
-                  </ion-note>
-              </ion-col>
-            </ion-row>
-      
-      </ion-slide>
-
-      <ion-slide style="background-color: blue">
-        <h2>Slide 2</h2>
-      </ion-slide>
-
-      <ion-slide style="background-color: red">
-        <h2>Slide 3</h2>
-      </ion-slide>
-
-</ion-slides>
-</ion-content>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

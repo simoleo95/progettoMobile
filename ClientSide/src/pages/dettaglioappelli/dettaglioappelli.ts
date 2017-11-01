@@ -15,25 +15,25 @@ import { QuestionarioPage} from '../questionario/questionario'
   templateUrl: 'dettaglioappelli.html',
 })
 export class DettaglioAppelliPage {
-  
-  appello: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[], data: string,
-			aula: string, descrizione: string, scadenza: string, tipologia: string} = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
-	  this.appello = navParams.get('appello');
-	  this.appello.scadenza = 'Non disponibile';
-	  this.appello.tipologia = 'Non disponibile';
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DettaglioAppelliPage');
-  }
-
-  Navigate(idMateria: string) {
-      this.appCtrl.getRootNav().push(QuestionarioPage, {materia: idMateria});
-  }
-
-  openAvatar() {
-      this.appCtrl.getRootNav().push(AvatarPage);
-  }
+  // appello: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[], data: string,
+	// 		aula: string, descrizione: string, scadenza: string, tipologia: string} = {};
+  //
+  // constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
+	//   this.appello = navParams.get('appello');
+	//   this.appello.scadenza = 'Non disponibile';
+	//   this.appello.tipologia = 'Non disponibile';
+  // }
+  //
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad DettaglioAppelliPage');
+  // }
+  //
+  // Navigate(idMateria: string) {
+  //     this.appCtrl.getRootNav().push(QuestionarioPage, {materia: idMateria});
+  // }
+  //
+  // openAvatar() {
+  //     this.appCtrl.getRootNav().push(AvatarPage);
+  // }
 }

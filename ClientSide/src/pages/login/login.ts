@@ -19,21 +19,21 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
- 
+
   public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
+    // this.showLoading()
+    // this.auth.login(this.registerCredentials).subscribe(allowed => {
+    //   if (allowed) {
         this.nav.setRoot(HomePage);
-      } else {
-        this.showError("Access Denied");
-      }
-    },
-      error => {
-        this.showError(error);
-      });
+    //   } else {
+    //     this.showError("Access Denied");
+    //   }
+    // },
+    //   error => {
+    //     this.showError(error);
+    //   });
   }
- 
+
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -41,10 +41,10 @@ export class LoginPage {
     });
     this.loading.present();
   }
- 
+
   showError(text) {
     this.loading.dismiss();
- 
+
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: text,
