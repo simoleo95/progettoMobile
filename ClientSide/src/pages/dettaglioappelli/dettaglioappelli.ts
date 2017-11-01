@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AvatarPage } from '../avatar/avatar';
-import { QuestionarioPage} from '../questionario/questionario'
+import { QuestionarioPage } from '../questionario/questionario'
+import { ConfermaPrenotazionePage } from '../confermaprenotazione/confermaprenotazione'
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { JsonDataProvider } from '../../providers/json-data/json-data';
 
 /**
  * Generated class for the DettaglioAppelliPage page.
@@ -17,9 +20,10 @@ import { QuestionarioPage} from '../questionario/questionario'
 export class DettaglioAppelliPage {
   
   appello: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[], data: string,
-			aula: string, descrizione: string, scadenza: string, tipologia: string} = {};
+			aula: string, descrizione: string, scadenza: string, tipologia: string};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App,
+    public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
 	  this.appello = navParams.get('appello');
 	  this.appello.scadenza = 'Non disponibile';
 	  this.appello.tipologia = 'Non disponibile';
@@ -29,8 +33,15 @@ export class DettaglioAppelliPage {
     console.log('ionViewDidLoad DettaglioAppelliPage');
   }
 
-  Navigate(idMateria: string) {
-      this.appCtrl.getRootNav().push(QuestionarioPage, {materia: idMateria});
+  Navigate() {
+    // uncomment when server works
+    //if (this.JsonService.compiledQuestionary(this.appello.idMateria)) {
+    // this.JsonService.book(this.appello.idMateria, this.appello.data).then(() => {
+      //  this.appCtrl.getRootNav().push(ConfermaPrenotazionePage, { appello: this.appello });
+    // });
+    //} else {
+      this.appCtrl.getRootNav().push(QuestionarioPage, { appello: this.appello });
+    //}
   }
 
   openAvatar() {

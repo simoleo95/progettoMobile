@@ -17,20 +17,31 @@
 <ion-content padding>
     <ion-grid>
         <ion-row style="border-bottom: 1px solid #AAA;">
-            <ion-col col-12>
-                <p>Domanda1</p>
-                <p>Domanda2</p>
-                <p>Domanda3</p>
-                <p>Domanda4</p>
-                <p>Domanda5</p>
-                <p>Domanda6</p>
-                <p>Domanda7</p>
-            </ion-col>
+          <ion-col col-12>
+            <ion-slides style="align-items: flex-start;">
+              <ion-slide *ngFor="let question of questionaire; let i = index;">
+                <h4 *ngIf="question.supertitle.length > 0">{{question.supertitle}}</h4>
+                <h5>{{question.question}}</h5>
+                <ion-list *ngIf="question.radio" radio-group>
+                  <ion-item *ngFor="let answer of question.answers; let j = index">
+                    <ion-label>{{answer}}</ion-label>
+                    <ion-radio value="{{j}}" (ionSelect)="answers[i] = j;"></ion-radio>
+                  </ion-item>
+                </ion-list>
+                <ion-list *ngIf="!question.radio">
+                  <h4 *ngIf="question.supertitle.length > 0">{{question.supertitle}}</h4>
+                  <h5>{{question.question}}</h5>
+                  <ion-item *ngFor="let answer of question.answers; let j = index">
+                    <ion-label>{{answer}}</ion-label>
+                    <ion-checkbox (click)="check(i, j)"></ion-checkbox>
+                  </ion-item>
+                </ion-list>
+                <button style="float: left;" ion-button *ngIf="i !== 0" (click)="previous(i)">Precedente</button>
+                <button style="float: right;" ion-button *ngIf="i !== questionaire.length - 1" (click)="next(i)">Successiva</button>
+                <button style="float: right;" color="secondary" ion-button *ngIf="i === questionaire.length - 1" (click)="submit()">Invia</button>
+              </ion-slide>
+            </ion-slides>
+          </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-card (clicl)="Navigate()">
-        <ion-card-content>
-            <p>Conferma</p>
-        </ion-card-content>
-    </ion-card>
 </ion-content>
