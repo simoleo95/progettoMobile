@@ -16,11 +16,14 @@
 
 <ion-content padding>
     <ion-grid>
-        <ion-row style="border-bottom: 1px solid #AAA;">
+        <ion-row>
             <ion-col col-12>
                 <p>Nome Materia: {{appello.nomeMateria}}</p>
-                <p>Docenti:</p>
-				<p ion-item *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
+                <p *ngIf="appello.docenti.length === 1">Docente: {{appello.docenti[0].nome}} {{appello.docenti[0].cognome}}</p>
+				<p *ngIf="appello.docenti.length > 1" class="no-margin-bottom">Docenti:</p>
+				<ion-item *ngIf="appello.docenti.length > 1" no-lines>
+					<p *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
+				</ion-item>
                 <p>Data: {{appello.data}}</p>
                 <p>Tipologia: {{appello.tipologia}}</p>
                 <p>Aula: {{appello.aula}}</p>

@@ -94,6 +94,16 @@ public class GenericResource {
        return Response.ok(ap).build();
     }
     
+    @GET
+    @Path("{appello}/iscritti")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response iscrittiappello(@PathParam("appello") int a) throws SQLException {    
+      
+      Appello ap = new Appello();
+      ap.Load(a);
+      int iscritti = ap.quantiIscritti();
+       return Response.ok(iscritti).build();
+    }
       @GET
     @Path("aula/{aula}")
     @Produces({ MediaType.APPLICATION_JSON})

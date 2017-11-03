@@ -32,10 +32,12 @@ import { Blocco2Page } from '../pages/aulelibere/blocco2/blocco2';
 //import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
 import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
 import { QuestionarioPage } from '../pages/questionario/questionario';
+import { ConfermaPrenotazionePage } from '../pages/confermaprenotazione/confermaprenotazione'
 import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Calendar } from '@ionic-native/calendar';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { JsonDataProvider } from '../providers/json-data/json-data';
 import { HttpModule } from '@angular/http';
@@ -67,6 +69,7 @@ import { HttpModule } from '@angular/http';
   //  DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
+    ConfermaPrenotazionePage,
     LoginPage
   ],
   imports: [
@@ -102,11 +105,13 @@ import { HttpModule } from '@angular/http';
     //DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
+    ConfermaPrenotazionePage,
     LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Calendar,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     JsonDataProvider,
