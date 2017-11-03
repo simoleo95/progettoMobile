@@ -1,0 +1,43 @@
+================================
+URL: http://localhost:8088/MYUNIVAQ3/rest/{matricola}/appelli
+Metodo: GET
+Returns: 
+{
+	idAppello: string,
+	idMateria: string,
+	nomeMateria: string,
+	data: int, // UNIX Timestamp contenente data e ora
+	aula: string,
+	descrizione: string,
+	scadenza: int,
+	tipologia: enum // scritto, orale, scritto + orale
+	docenti: {
+		nome: string,
+		cognome: string
+	}[]
+}[]
+================================
+URL: http://localhost:8088/MYUNIVAQ3/rest/{matricola}/iscrizioneappello/{appello}
+Metodo: POST
+Payload:
+{
+	user: string,
+	token: string 
+}
+Returns: boolean
+================================
+URL: http://localhost:8088/MYUNIVAQ3/rest/{matricola}/questionario/{materia}/compiled
+Metodo: GET
+Returns: boolean
+================================
+URL: http://localhost:8088/MYUNIVAQ3/rest/{matricola}/questionario/{materia}
+Metodo: POST
+Payload:
+{
+	user: string,
+	token: string,
+	answers: [ // l'indice è l'id della domanda
+		single: boolean,
+		value: null | number | boolean[] // null in caso di risposte opzionali non date, number in caso di risposte singole, array di booleani in caso di risposte multiple
+	]
+}
