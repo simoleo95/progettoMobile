@@ -6,11 +6,11 @@ Returns:
 	idAppello: string,
 	idMateria: string,
 	nomeMateria: string,
-	data: int, // UNIX Timestamp contenente data e ora
+	data: string, // formato "dd/mm/aaaa hh:mm"
 	aula: string,
 	descrizione: string,
 	scadenza: int,
-	tipologia: enum // scritto, orale, scritto + orale
+	tipologia: enum // scritto, orale, scritto + orale, alternativamente come stringa
 	docenti: {
 		nome: string,
 		cognome: string
