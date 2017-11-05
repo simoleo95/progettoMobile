@@ -19,7 +19,7 @@ export class DovutePage {
   tasse: Array<any> = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
-        console.log(this.auth.getUserInfo());
+        
        this.JsonService.getData(this.auth.getUserInfo()).then(data => {
            for (let entry in data['tasse']) {
                if(!data['tasse'][entry].pagata) {
