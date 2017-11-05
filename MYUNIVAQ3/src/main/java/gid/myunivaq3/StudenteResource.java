@@ -120,6 +120,10 @@ public class StudenteResource {
            List<Materia> corsiScelti = s.getCorsiScelti();
                    corsiScelti.addAll(materie);
                    
+                     for (Materia materia : corsiScelti) {
+               materia.lite2();
+           }
+                   
        return Response.ok(corsiScelti).build();
        }
        return Response.ok("errore").build();
