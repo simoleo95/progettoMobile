@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AvatarPage } from '../avatar/avatar';
 import { JsonDataProvider } from '../../providers/json-data/json-data';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { DettaglioAppelliPage } from '../dettaglioappelli/dettaglioappelli'
+//import { DettaglioAppelliPage } from '../dettaglioappelli/dettaglioappelli'
 
 /**
  * Generated class for the ListaAppelliPage page.
@@ -36,8 +36,8 @@ export class ListaAppelliPage {
 						aula: appello['aula'],
 						descrizione: appello['descrizione']
 					}
-				});	   
-			}		   
+				});
+			}
 	});
   }
 
@@ -45,10 +45,10 @@ export class ListaAppelliPage {
     console.log('ionViewDidLoad ListaAppelliPage');
   }
 
-  Navigate(info: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[],
-				  data: string, aula: string, descrizione: string}) {
-      this.appCtrl.getRootNav().push(DettaglioAppelliPage, {appello: info});
-  }
+  // Navigate(info: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[],
+	// 			  data: string, aula: string, descrizione: string}) {
+  //     this.appCtrl.getRootNav().push(DettaglioAppelliPage, {appello: info});
+  // }
 
   openAvatar() {
       this.appCtrl.getRootNav().push(AvatarPage);

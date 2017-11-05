@@ -34,6 +34,20 @@ export class JsonDataProvider {
         });
     }
     
+    getGeneric(url) {
+        return new Promise(resolve => {
+           
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+            
+            this.http.get(url, {headers: headers})
+                .map(res => res.json())
+                .subscribe(data => {
+                    resolve(data);
+                });
+        });
+    }
+    
     getUser(user, password) {
          return new Promise(resolve => {
             let headers = new Headers();

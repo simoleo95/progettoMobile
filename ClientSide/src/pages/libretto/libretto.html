@@ -19,26 +19,26 @@
         <!-- Righe per medie -->
         <ion-row>
             <ion-col col-12 style="text-align:center;">
-                <p>Media aritmetica: {{libretto.mediaAritmetica}}</p>
-                <p>Media ponderata: {{libretto.mediaPonderata}}</p>
+                <p>Media aritmetica: <!--{{libretto.mediaAritmetica}}--></p>
+                <p>Media ponderata: <!--{{libretto.mediaPonderata}}--></p>
             </ion-col>
         </ion-row>
         
         <!-- Righe per voti -->
       <ion-list>
-        <ion-row ion-item *ngFor="let esame of libretto.esami">
+        <ion-row ion-item>
             <ion-col col-12>
-                <ion-card>
+                <ion-card *ngFor="let e of esami">
                   <ion-card-content>
                     <ion-grid>
                         <ion-row>
                             <ion-col col-9>
-                                <p style="font-weight: bold;font-size:18px;">{{esame.nomeMateria}}</p>
-                                <p>{{esame.data}}</p>
+                                <p style="font-weight: bold;font-size:18px;">{{e.materia.nome}}</p>
+                                <p>{{e.appello.data}}</p>
                             </ion-col>
                             <ion-col col-3>
-                                <p style="font-weight: bold;font-size:18px;">{{esame.voto}}</p>
-                                <p>{{esame.cfu}}</p>
+                                <p style="font-weight: bold;font-size:18px;">{{e.voto}}</p>
+                                <p>{{e.materia.cfu}} CFU</p>
                             </ion-col>
                         </ion-row>
                     </ion-grid>

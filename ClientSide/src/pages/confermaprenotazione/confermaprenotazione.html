@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title style="text-align:center;padding-right:50px;">{{appello.nomeMateria}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <h3>Prenotazione avvenuta con successo</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom: 1px solid #AAA;">
+      <ion-col col-12>
+        <p>Nome Materia: {{appello.nomeMateria}}</p>
+        <p *ngIf="appello.docenti.length === 1">Docente: {{appello.docenti[0].nome}} {{appello.docenti[0].cognome}}</p>
+		<p *ngIf="appello.docenti.length > 1" class="no-margin-bottom">Docenti:</p>
+		<ion-item *ngIf="appello.docenti.length > 1" no-lines>
+			<p *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
+		</ion-item>
+        <p>Data: {{appello.data}}</p>
+        <p>Tipologia: {{appello.tipologia}}</p>
+        <p>Aula: {{appello.aula}}</p>
+        <p>Descrizione: {{appello.descrizione}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card (click)="addToCalendar()">
+    <ion-card-content>
+      <p>Aggiungi al calendario</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
