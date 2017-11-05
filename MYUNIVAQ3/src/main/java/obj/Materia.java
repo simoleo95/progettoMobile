@@ -6,12 +6,10 @@
 package obj;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class Materia {
     
     private String id ;
     private String nome;
-    private String anno;
+    private int anno;
     private int semestre;
     private int cfu;
     private String tipocfu;
@@ -33,7 +31,7 @@ public class Materia {
     public Materia() {
     }
 
-    public Materia(String id, String nome, String anno, int semestre, int cfu, String tipocfu) {
+    public Materia(String id, String nome, int anno, int semestre, int cfu, String tipocfu) {
         this.id = id;
         this.nome = nome;
         this.anno = anno;
@@ -58,11 +56,11 @@ public class Materia {
         this.nome = nome;
     }
 
-    public String getAnno() {
+    public int getAnno() {
         return anno;
     }
 
-    public void setAnno(String anno) {
+    public void setAnno(int anno) {
         this.anno = anno;
     }
 
@@ -145,10 +143,8 @@ public class Materia {
             
             this.id = rs.getString("codice");
             this.nome = rs.getString("nome");
-             Date d = rs.getDate("anno");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            setAnno(df.format(d));
-//           
+          
+            this.anno =rs.getInt("anno");
             this.semestre = rs.getInt("semestre");
             this.cfu = rs.getInt("cfu");
             this.tipocfu = rs.getString("tipoCfu");
@@ -196,7 +192,7 @@ public class Materia {
 public void lite(){
         this.professori =null;
                 this.id =null;
-                        this.anno =null;
+        
                               
 }
 public void lite2(){
