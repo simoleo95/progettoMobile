@@ -20,6 +20,7 @@ import obj.Aula;
 import obj.Corso;
 import obj.Login;
 import obj.Materia;
+import obj.Orario;
 import obj.Professore;
 import obj.Studente;
 
@@ -113,4 +114,13 @@ public class GenericResource {
        return Response.ok(au).build();
     }
     
+      @GET
+    @Path("aule_libere")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public List<Aula> prova() throws SQLException {
+        
+        Orario o = new Orario();
+       
+        return o.aulelibere();
+    }
 }

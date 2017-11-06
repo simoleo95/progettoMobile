@@ -12,13 +12,14 @@ http://localhost:8088/MYUNIVAQ3/rest/{matricola}/tutti_i_corsi
 http://localhost:8088/MYUNIVAQ3/rest/{matricola}/appelli ( la devo finire questa)
 http://localhost:8088/MYUNIVAQ3/rest/{matricola}/tasse
 http://localhost:8088/MYUNIVAQ3/rest/{matricola}/iscrizioneappello/{appello}
+http://localhost:8088/MYUNIVAQ3/rest/{matricola}/orario
 
 GENERIC
 http://localhost:8088/MYUNIVAQ3/rest/{matricola}/appelli/iscritti
 http://localhost:8088/MYUNIVAQ3/rest/generic/ (delle cose di dominio publico e non personali)
 
 http://localhost:8088/MYUNIVAQ3/rest/generic/{appello}/iscritti
-
+http://localhost:8088/MYUNIVAQ3/rest/generic/aule_libere
 
 
 il token vine salvato e ristituito quando viene eseguita 

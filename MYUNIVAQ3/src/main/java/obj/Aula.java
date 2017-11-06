@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -69,4 +71,61 @@ public class Aula {
     
 }
     
+    public List<Aula> tutteperblocco(String blocco) throws SQLException{
+         List<Aula> out = new LinkedList<>();
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+    String query = "select * " +
+                   " from  MYUNIVAQ.Aula "+
+                    " WHERE Aula.blocco = '" +blocco+"'" ;
+    try{
+        
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+              Aula au = new Aula();
+           
+            au.id = rs.getString("id");
+            au.blocco = rs.getString("blocco");
+            out.add(au);
+        }
+    
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+    return out;
+    }
+    
+     public List<Aula> tutte() throws SQLException{
+         List<Aula> out = new LinkedList<>();
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+    String query = "select * " +
+                   " from  MYUNIVAQ.Aula " ;
+    try{
+        
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+              Aula au = new Aula();
+           
+            au.id = rs.getString("id");
+            au.blocco = rs.getString("blocco");
+            out.add(au);
+        }
+    
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+    return out;
+    }
+     
+     
+   
     }

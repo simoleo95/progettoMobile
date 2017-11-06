@@ -23,6 +23,7 @@ import obj.EsamiSvolti;
 import obj.Log;
 import obj.Login;
 import obj.Materia;
+import obj.Orario;
 import obj.Studente;
 import obj.Tassa;
 
@@ -189,5 +190,22 @@ public class StudenteResource {
        return "errore nel server";}
        }
        return "errore";
+    }
+    
+    @POST
+    @Path("orario")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Response orario(@PathParam("matricola") int a , Login log) throws SQLException {
+       if(log.verifica()) {
+      Studente s = new Studente();
+      s.Load(a); 
+          List<Orario> out = s.orariopersonale();
+           for (Orario orr : out) {
+               orr.lite();
+           }
+       return Response.ok(out).build();
+       }
+       return Response.ok("errore").build();
     }
 }

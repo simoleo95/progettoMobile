@@ -309,6 +309,7 @@ public class Studente {
         
         public List<Appello> appelliiscritti() throws SQLException{
             List<Appello> a = new LinkedList<>();
+         
               Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
         Statement stmt = null;
         int i =0;
@@ -336,5 +337,48 @@ public class Studente {
             return a;
         }
         
+        
+        
+        
+        public List<Orario> orariopersonale()throws SQLException{
+            List<Orario> a = new LinkedList<>();
+             List<Orario> out = new LinkedList<>();
+               Corso cor =this.getCorso();
+           List<Materia> materie = cor.getMaterie();
+           List<Materia> tutti = this.getCorsiScelti();
+                   tutti.addAll(materie);
+              Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
+        int i =0;
+    String query = "select * " +
+                   "from  MYUNIVAQ.Orario ";
+    try{
+        
+         stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+        Orario o = new Orario();
+        o.load(rs.getInt("id"));
+        a.add(o);
+        }
+        
+    }catch(SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+       
+            for (Orario orario : a) {
+                for (Materia mat : tutti) {
+                     if( orario.getMateria().getId().equals(mat.getId()) ){
+                         out.add(orario);
+                }
+                }
+                
+            }
+    
+            return out;
+        }
     }
      

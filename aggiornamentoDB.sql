@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Ott 03, 2017 alle 17:47
+-- Creato il: Nov 06, 2017 alle 12:40
 -- Versione del server: 5.6.31
 -- Versione PHP: 5.5.38
 
@@ -31,17 +31,18 @@ CREATE TABLE IF NOT EXISTS `Appello` (
   `fk_materia` varchar(255) COLLATE utf8_bin NOT NULL,
   `data_esame` date NOT NULL,
   `descrizione` text COLLATE utf8_bin NOT NULL,
-  `aula` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `aula` varchar(255) COLLATE utf8_bin NOT NULL,
+  `oraInizio` varchar(255) COLLATE utf8_bin NOT NULL,
+  `oraFine` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `Appello`
 --
 
-INSERT INTO `Appello` (`id`, `fk_materia`, `data_esame`, `descrizione`, `aula`) VALUES
-(4, 'a123', '2017-10-20', 'prova lista appelli ', 'a01'),
-(100, 'aaa', '2017-07-09', '30 politico', 'a01'),
-(102, 'f01', '2017-07-04', 'boccio a tutti', 'a02');
+INSERT INTO `Appello` (`id`, `fk_materia`, `data_esame`, `descrizione`, `aula`, `oraInizio`, `oraFine`) VALUES
+(1, 'ing-03', '2018-01-05', 'test', 'a01', '09:00:00', '13:00:00'),
+(2, 'fff', '2018-01-12', 'test', 'a02', '10:00:00', '14:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,9 @@ CREATE TABLE IF NOT EXISTS `Aula` (
 
 INSERT INTO `Aula` (`id`, `blocco`) VALUES
 ('a01', '0'),
-('a02', '0');
+('a02', '0'),
+('aula12', 'z9'),
+('baracca', 'c1');
 
 -- --------------------------------------------------------
 
@@ -119,9 +122,7 @@ CREATE TABLE IF NOT EXISTS `EsamiSvolti` (
 --
 
 INSERT INTO `EsamiSvolti` (`fk_materia`, `fk_studente`, `voto`, `fk_appello`) VALUES
-('aaa', 222222, 23, 100),
-('aaa', 236425, 23, 100),
-('f01', 236425, 23, 102);
+('a123', 236425, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -149,6 +150,24 @@ INSERT INTO `insegnamento` (`fk_materia`, `fk_professore`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `iscrizione`
+--
+
+CREATE TABLE IF NOT EXISTS `iscrizione` (
+  `fk_studente` int(255) NOT NULL,
+  `fk_appello` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `iscrizione`
+--
+
+INSERT INTO `iscrizione` (`fk_studente`, `fk_appello`) VALUES
+(236425, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `Log`
 --
 
@@ -157,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `Log` (
   `Descrizione` text COLLATE utf8_bin NOT NULL,
   `Data` datetime NOT NULL,
   `fk_user` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `Log`
@@ -165,7 +184,33 @@ CREATE TABLE IF NOT EXISTS `Log` (
 
 INSERT INTO `Log` (`id`, `Descrizione`, `Data`, `fk_user`) VALUES
 (1, 'qualsiasicosa', '2017-10-03 17:03:30', 'cris'),
-(2, 'Login effettuato, modificato il token', '2017-10-03 17:07:32', 'cris');
+(2, 'Login effettuato, modificato il token', '2017-10-03 17:07:32', 'cris'),
+(3, 'Login effettuato, modificato il token', '2017-10-06 13:31:37', 'cris'),
+(4, 'Login effettuato, modificato il token', '2017-10-06 13:31:42', 'cris'),
+(5, 'Login effettuato, modificato il token', '2017-10-06 13:33:06', 'cris'),
+(6, 'Login effettuato, modificato il token', '2017-10-06 13:49:29', 'cris'),
+(7, 'Login effettuato, modificato il token', '2017-10-06 13:50:21', 'cris'),
+(8, 'Login effettuato, modificato il token', '2017-10-06 13:50:49', 'cris'),
+(9, 'Login effettuato, modificato il token', '2017-10-09 16:15:57', 'cris'),
+(10, 'Login effettuato, modificato il token', '2017-10-09 17:36:03', 'cris'),
+(11, 'Login effettuato, modificato il token', '2017-10-09 20:20:13', 'cris'),
+(12, 'Login effettuato, modificato il token', '2017-10-10 11:33:36', 'cris'),
+(13, 'Login effettuato, modificato il token', '2017-10-10 17:12:54', 'cris'),
+(14, 'Login effettuato, modificato il token', '2017-10-18 16:30:19', 'cris'),
+(15, 'logout effettuato', '2017-10-18 17:07:20', 'cris'),
+(16, 'logout effettuato', '2017-10-18 17:11:01', 'cris'),
+(17, 'Login effettuato, modificato il token', '2017-10-18 17:11:19', 'cris'),
+(18, 'logout effettuato', '2017-10-18 17:12:26', 'cris'),
+(19, 'logout effettuato', '2017-10-18 17:14:18', 'cris'),
+(20, 'logout effettuato', '2017-10-18 17:14:40', 'cris'),
+(21, 'Login effettuato, modificato il token', '2017-10-18 17:19:56', 'cris'),
+(22, 'Login effettuato, modificato il token', '2017-11-01 11:23:04', 'cris'),
+(23, 'Login effettuato, modificato il token', '2017-11-01 11:25:35', 'cris'),
+(24, 'Login effettuato, modificato il token', '2017-11-01 12:00:39', 'cris'),
+(25, 'Login effettuato, modificato il token', '2017-11-01 12:04:54', 'cris'),
+(26, 'Login effettuato, modificato il token', '2017-11-01 17:57:53', 'cris'),
+(27, 'Login effettuato, modificato il token', '2017-11-01 18:00:48', 'cris'),
+(28, 'Login effettuato, modificato il token', '2017-11-01 18:50:20', 'cris');
 
 -- --------------------------------------------------------
 
@@ -186,8 +231,7 @@ CREATE TABLE IF NOT EXISTS `Login` (
 --
 
 INSERT INTO `Login` (`user`, `psw`, `token`, `email`, `matricola`) VALUES
-('cris', 'qwerty', 'cris:42d4f17d7b7f0e7', 'asd@asd.asd ', 236425),
-('qwe', 'qwert', '', 'zxc@zxc.zxc', 222222);
+('cris', 'qwerty', 'cris:158f3481ce9d74cd', 'asd@asd.asd ', 236425);
 
 -- --------------------------------------------------------
 
@@ -198,7 +242,7 @@ INSERT INTO `Login` (`user`, `psw`, `token`, `email`, `matricola`) VALUES
 CREATE TABLE IF NOT EXISTS `Materia` (
   `codice` varchar(255) COLLATE utf8_bin NOT NULL,
   `nome` varchar(255) COLLATE utf8_bin NOT NULL,
-  `anno` date NOT NULL,
+  `anno` int(11) NOT NULL,
   `cfu` int(32) NOT NULL,
   `tipoCfu` varchar(255) COLLATE utf8_bin NOT NULL,
   `semestre` int(2) NOT NULL
@@ -209,11 +253,11 @@ CREATE TABLE IF NOT EXISTS `Materia` (
 --
 
 INSERT INTO `Materia` (`codice`, `nome`, `anno`, `cfu`, `tipoCfu`, `semestre`) VALUES
-('a123', 'prova123', '2017-05-08', 99, 'a12', 2),
-('aaa', 'asdfghjkl', '2017-01-01', 2, 'mario', 3),
-('f01', 'APP mobile', '2017-01-01', 6, 'tutti ', 2),
-('fff', 'qwertyuiop', '2017-07-03', 1, 'ok', 1),
-('ing-03', 'inglese ', '2017-01-01', 80, 'bo', 1);
+('a123', 'prova123', 20170508, 99, 'a12', 2),
+('aaa', 'asdfghjkl', 20170101, 2, 'mario', 3),
+('f01', 'APP mobile', 20170101, 6, 'tutti ', 2),
+('fff', 'qwertyuiop', 20170703, 1, 'ok', 1),
+('ing-03', 'inglese ', 20170101, 80, 'bo', 1);
 
 -- --------------------------------------------------------
 
@@ -236,6 +280,31 @@ INSERT INTO `MaterieCorso` (`id_corso`, `id_materia`) VALUES
 ('1', 'fff'),
 ('2', 'fff'),
 ('2', 'ing-03');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Orario`
+--
+
+CREATE TABLE IF NOT EXISTS `Orario` (
+  `id` int(255) NOT NULL,
+  `fk_materia` varchar(255) COLLATE utf8_bin NOT NULL,
+  `fk_aula` varchar(255) COLLATE utf8_bin NOT NULL,
+  `giorno` varchar(255) COLLATE utf8_bin NOT NULL,
+  `oraInizio` varchar(255) COLLATE utf8_bin NOT NULL,
+  `oraFine` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `Orario`
+--
+
+INSERT INTO `Orario` (`id`, `fk_materia`, `fk_aula`, `giorno`, `oraInizio`, `oraFine`) VALUES
+(1, 'a123', 'a01', 'lunedì', '08:00:00', '09:00:00'),
+(2, 'a123', 'a02', 'martedì', '09:00:00', '10:00:00'),
+(3, 'f01', 'baracca', 'lunedì', '11:00:00', '13:00:00'),
+(4, 'a123', 'baracca', 'lunedì', '8:00:00', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -358,6 +427,14 @@ ALTER TABLE `insegnamento`
   ADD KEY `fk_prof` (`fk_professore`);
 
 --
+-- Indici per le tabelle `iscrizione`
+--
+ALTER TABLE `iscrizione`
+  ADD PRIMARY KEY (`fk_appello`,`fk_studente`),
+  ADD KEY `fk_studente` (`fk_studente`),
+  ADD KEY `fk_appello` (`fk_appello`);
+
+--
 -- Indici per le tabelle `Log`
 --
 ALTER TABLE `Log`
@@ -391,6 +468,14 @@ ALTER TABLE `MaterieCorso`
   ADD KEY `id_materia` (`id_materia`);
 
 --
+-- Indici per le tabelle `Orario`
+--
+ALTER TABLE `Orario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_materia` (`fk_materia`),
+  ADD KEY `fk_aula` (`fk_aula`);
+
+--
 -- Indici per le tabelle `Professore`
 --
 ALTER TABLE `Professore`
@@ -416,10 +501,20 @@ ALTER TABLE `Tassa`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `Appello`
+--
+ALTER TABLE `Appello`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT per la tabella `Log`
 --
 ALTER TABLE `Log`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT per la tabella `Orario`
+--
+ALTER TABLE `Orario`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -442,9 +537,9 @@ ALTER TABLE `CorsiScelti`
 -- Limiti per la tabella `EsamiSvolti`
 --
 ALTER TABLE `EsamiSvolti`
+  ADD CONSTRAINT `esamisvolti_ibfk_1` FOREIGN KEY (`fk_appello`) REFERENCES `Appello` (`id`),
   ADD CONSTRAINT `fk_materiaa` FOREIGN KEY (`fk_materia`) REFERENCES `Materia` (`codice`),
-  ADD CONSTRAINT `fk_studente` FOREIGN KEY (`fk_studente`) REFERENCES `Studente` (`matricola`),
-  ADD CONSTRAINT `qwe` FOREIGN KEY (`fk_appello`) REFERENCES `Appello` (`id`);
+  ADD CONSTRAINT `fk_studente` FOREIGN KEY (`fk_studente`) REFERENCES `Studente` (`matricola`);
 
 --
 -- Limiti per la tabella `insegnamento`
@@ -452,6 +547,13 @@ ALTER TABLE `EsamiSvolti`
 ALTER TABLE `insegnamento`
   ADD CONSTRAINT `fk_materiaaa` FOREIGN KEY (`fk_materia`) REFERENCES `Materia` (`codice`),
   ADD CONSTRAINT `fk_prof` FOREIGN KEY (`fk_professore`) REFERENCES `Professore` (`id`);
+
+--
+-- Limiti per la tabella `iscrizione`
+--
+ALTER TABLE `iscrizione`
+  ADD CONSTRAINT `iscrizione_ibfk_1` FOREIGN KEY (`fk_studente`) REFERENCES `Studente` (`matricola`),
+  ADD CONSTRAINT `iscrizione_ibfk_2` FOREIGN KEY (`fk_appello`) REFERENCES `Appello` (`id`);
 
 --
 -- Limiti per la tabella `Log`
@@ -471,6 +573,13 @@ ALTER TABLE `Login`
 ALTER TABLE `MaterieCorso`
   ADD CONSTRAINT `fk_corso` FOREIGN KEY (`id_corso`) REFERENCES `CorsoDiLaurea` (`id`),
   ADD CONSTRAINT `fk_materia` FOREIGN KEY (`id_materia`) REFERENCES `Materia` (`codice`);
+
+--
+-- Limiti per la tabella `Orario`
+--
+ALTER TABLE `Orario`
+  ADD CONSTRAINT `orario_ibfk_1` FOREIGN KEY (`fk_materia`) REFERENCES `Materia` (`codice`),
+  ADD CONSTRAINT `orario_ibfk_2` FOREIGN KEY (`fk_aula`) REFERENCES `Aula` (`id`);
 
 --
 -- Limiti per la tabella `Studente`
