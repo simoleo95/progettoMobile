@@ -8,10 +8,12 @@ package gid.myunivaq3;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -128,18 +130,16 @@ public class GenericResource {
     }
     
     
-     @GET
+     @POST
     @Path("questionariosalva")
     @Produces({ MediaType.APPLICATION_JSON})
-    public Questionario prova() throws SQLException {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Questionario prova(Questionario quest) throws SQLException {
         
-       Domanda d = new Domanda("hai seguito tutte le lezioni ?", "si");
-        Domanda d2 = new Domanda("quanto vuoi ?", "30 ma anche 18 accetto");
-       List<Domanda> l = new LinkedList<>();
-       l.add(d);
-       l.add(d2);
-       Questionario q = new Questionario("236425", "aaa", "10", "non lo so ancora", l);
-       q.salvalocalmente();
+     
+       String p = "MYUNIVAQ3\\questionari\\"+quest.getStudente()+"_"+ quest.getMateria() +"_"+ quest.getProf() +".json" ;  
+       Questionario q = new Questionario(quest.getStudente(), quest.getMateria(), quest.getProf(),p , quest.getQuestionario());
+       q.salva();
        return q;
     }
 }

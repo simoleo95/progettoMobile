@@ -5,7 +5,6 @@
  */
 package obj;
 
-import com.timebuddy.gae.server.service.TokenGenerator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,11 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
 import java.util.List;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
@@ -88,6 +83,15 @@ public class Questionario {
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public String toString() {
+//        String quest= "";
+//        for (Domanda domanda : questionario) {
+//            quest= quest + domanda.toString();
+//        }
+        return "Questionario{" + "studente=" + studente + ", materia=" + materia + ", prof=" + prof + ", path=" + path + ", questionario=" + questionario + '}';
+    }
     
     
     public boolean find(String matricola,String materia, String profid)throws SQLException{
@@ -118,21 +122,62 @@ public class Questionario {
         return out;
     }
     
-    public void salvalocalmente(){
+    public String salva() throws SQLException{
+        boolean out = false;
+    if(find(this.studente, this.materia, this.prof)){
+        System.err.println("esiste gia salvata");
+    return "esiste gia salvata";
+    }else{
+        if(salvalocalmente()){
+         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/MYUNIVAQ?zeroDateTimeBehavior=convertToNull","root","mysql");
+        Statement stmt = null;
         
-//         ObjectMapper mapper = new ObjectMapper();
-//          try {  
-//              TokenGenerator a = new TokenGenerator();
-//              String asd = a.generateToken(this.studente);
-//        // Writing to a file   
-//        mapper.writeValue(new File("\\questionario\\"+this.studente+"_"+this.materia+"_"+this.prof+".json"), this );
-
-        try(FileWriter file= new FileWriter(this.studente+"_"+this.materia+"_"+this.prof+".json")){
-        file.write(this.toString());
-        file.flush();
-        }catch (IOException e) { 
-    }  
-        System.out.println(this);
+    String query =" INSERT INTO `MYUNIVAQ`.`Questionario` (`path`, `fk_studente`, `fk_materia`, `fk_pro`) VALUES ('"+ this.path +"','"+this.studente +"','"+this.materia +"','"+this.prof +"')";
+    try {
+        stmt = con.createStatement();
+            int rs = stmt.executeUpdate(query);
+       
+       out = rs > 0;
+         boolean ok = Log.Log("Salvataggio questionario,"+this.studente+"_"+this.materia+"_"+this.prof , this.studente);
+                                                      if(ok== false){
+                                                      System.out.println("error log");
+                                                      }
+             
+    }catch (SQLException e ) {
+        
+    } finally {
+        if (stmt != null) { stmt.close(); }
     }
-     
-}
+        }
+        System.err.println("stato: "+out);
+        
+        return "stato: "+out;
+    }
+    
+    }
+    
+    
+    
+    
+   
+
+    
+    public boolean salvalocalmente(){
+        boolean out = false ;
+                String fullpath = null;
+                File f = new File("..\\..\\MYUNIVAQ3\\questionari\\", this.studente+"_"+this.materia+"_"+this.prof+".json");
+               
+
+                try(FileWriter file= new FileWriter(f)){
+                file.write(this.toString());
+                file.flush();
+                out = true;
+                System.out.println("qualcosa è susccessio  "+this.studente+"_"+this.materia+"_"+this.prof+".json");
+                }catch (IOException e) { 
+            }  
+                System.out.println(this.toString());
+                return out ;
+            }
+
+    }
+

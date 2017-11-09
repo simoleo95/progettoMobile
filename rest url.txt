@@ -34,3 +34,25 @@ payload:
 mi rimane da sistemare un po di put per inserire i dati ( ma  a voi non server)
 forse giusto questo per il login per inserire nuovi utenti 
 ( vedete sul db quali sono gli utenti e le psw e aggiungeteli da li se mai per ora )
+
+
+
+per salvare il questionario
+url:http://localhost:8088/MYUNIVAQ3/rest/generic/questionariosalva
+metodo: POST 
+body : ( questo sotto è un esempio del body come deve essere)
+{
+  "studente": "236422",
+  "materia": "aaa",
+  "prof": "11",
+  "questionario": [
+    {
+      "domanda": "blablabla",
+      "risposta": "qwe"
+    },
+    {
+      "domanda": "blablabla2",
+      "risposta": "qwe2"
+    }
+  ]
+}

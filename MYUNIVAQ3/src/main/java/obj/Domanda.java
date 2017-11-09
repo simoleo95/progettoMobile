@@ -36,6 +36,11 @@ public class Domanda {
     public void setRisposta(String risposta) {
         this.risposta = risposta;
     }
+
+    @Override
+    public String toString() {
+        return "Domanda{" + "domanda=" + domanda + ", risposta=" + risposta + '}';
+    }
     
     
 }
