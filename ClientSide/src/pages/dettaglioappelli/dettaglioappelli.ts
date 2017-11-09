@@ -15,6 +15,30 @@ import { QuestionarioPage} from '../questionario/questionario'
   templateUrl: 'dettaglioappelli.html',
 })
 export class DettaglioAppelliPage {
+<<<<<<< Updated upstream
+=======
+  
+  appello: {
+  idMateria: string,
+  nomeMateria: string,
+  docenti: Array<{aaaa: string, cognome: string}>,
+  data: string,
+			aula: string,
+            descrizione: string,
+            scadenza: string,
+            tipologia: string} = {
+             idMateria: "",
+  nomeMateria: "",
+   docenti:[],
+   data:"",
+   aula:"",
+   descrizione: "",
+            scadenza: "",
+            tipologia: ""
+   
+            };
+            
+>>>>>>> Stashed changes
 
   // appello: {idMateria: string, nomeMateria: string, docenti: {nome: string, cognome: string}[], data: string,
 	// 		aula: string, descrizione: string, scadenza: string, tipologia: string} = {};

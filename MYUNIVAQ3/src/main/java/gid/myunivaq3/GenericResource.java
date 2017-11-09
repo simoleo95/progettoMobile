@@ -6,6 +6,7 @@
 package gid.myunivaq3;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -18,10 +19,12 @@ import javax.ws.rs.core.Response;
 import obj.Appello;
 import obj.Aula;
 import obj.Corso;
+import obj.Domanda;
 import obj.Login;
 import obj.Materia;
 import obj.Orario;
 import obj.Professore;
+import obj.Questionario;
 import obj.Studente;
 
 /**
@@ -117,10 +120,26 @@ public class GenericResource {
       @GET
     @Path("aule_libere")
     @Produces({ MediaType.APPLICATION_JSON})
-    public List<Aula> prova() throws SQLException {
+    public List<Aula> aulelibere() throws SQLException {
         
         Orario o = new Orario();
        
         return o.aulelibere();
+    }
+    
+    
+     @GET
+    @Path("questionariosalva")
+    @Produces({ MediaType.APPLICATION_JSON})
+    public Questionario prova() throws SQLException {
+        
+       Domanda d = new Domanda("hai seguito tutte le lezioni ?", "si");
+        Domanda d2 = new Domanda("quanto vuoi ?", "30 ma anche 18 accetto");
+       List<Domanda> l = new LinkedList<>();
+       l.add(d);
+       l.add(d2);
+       Questionario q = new Questionario("236425", "aaa", "10", "non lo so ancora", l);
+       q.salvalocalmente();
+       return q;
     }
 }
