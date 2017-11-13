@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { JsonDataProvider } from '../../../providers/json-data/json-data';
+import { AuthServiceProvider } from '../../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the Blocco2Page page.
@@ -13,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'blocco2.html',
 })
 export class Blocco2Page {
-  auleLibere = [
-    {nome: "C1.9", orario: "18:00"}
-  ];
+    
+  aule: Array<any> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
+       this.JsonService.getGeneric("http://localhost:8088/MYUNIVAQ3/rest/generic/aule_libere").then(data => {
+          for (let entry in data)
+              if (data[entry].blocco == "2")
+                  this.aule.push(data[entry]);
+      });
   }
 
   ionViewDidLoad() {

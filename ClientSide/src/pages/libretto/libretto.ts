@@ -32,9 +32,18 @@ export class LibrettoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App,
 			   public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
 	  
-      this.JsonService.getData(this.auth.getUserInfo(), "").then(data => {
-            for(let entry in data['libretto'])
-                this.esami.push(data['libretto'][entry]);
+      this.JsonService.getData(this.auth.getUserInfo(), "libretto").then(data => {
+            for(let entry in data) {
+                this.JsonService.getGeneric(data[entry].materiaurl).then(tmp => {
+                    data[entry].materiaurl = tmp;
+                });
+                
+                this.JsonService.getGeneric(data[entry].appellourl).then(tmp => {
+                    data[entry].appellourl = tmp;
+                });
+                
+                this.esami.push(data[entry]);
+            }
       });
         
       this.calcolaMedia();
