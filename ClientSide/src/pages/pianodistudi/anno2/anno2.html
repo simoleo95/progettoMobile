@@ -13,6 +13,20 @@
 </ion-header>
 
 
-<ion-content padding>
-    Anno 2
+<ion-content>
+    <ion-card (click)="Navigate()" *ngFor="let e of esami">
+      <ion-card-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-9>
+                    <p class="materia" style="font-weight: bold;font-size:18px;">{{e.nome}}</p>
+                    <p>{{e.id}}</p>
+                </ion-col>
+                <ion-col col-3>
+                    <p style="font-weight: bold;font-size:18px;">{{e.cfu}} CFU</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

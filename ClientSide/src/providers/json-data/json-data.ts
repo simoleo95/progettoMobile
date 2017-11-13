@@ -15,7 +15,7 @@ export class JsonDataProvider {
         console.log('Hello JsonDataProvider Provider');
     }
     
-    getData(utente) {
+    getData(utente, parametro = "") {
         return new Promise(resolve => {
     
             let headers = new Headers();
@@ -26,7 +26,7 @@ export class JsonDataProvider {
                 "token": utente.token
             };
             
-            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/' + utente.matricola, JSON.stringify(body), {headers: headers})
+            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/' + utente.matricola + '/' + parametro, JSON.stringify(body), {headers: headers})
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);

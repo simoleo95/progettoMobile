@@ -7,34 +7,16 @@
 </ion-header>
 
 <ion-content>
-    <ion-card (click)="Navigate()">
+    <ion-card (click)="Navigate()" *ngFor="let e of esami">
       <ion-card-content>
         <ion-grid>
             <ion-row>
                 <ion-col col-9>
-                    <p class="materia" style="font-weight: bold;font-size:18px;">Analisi Numerica</p>
-                    <p>Codice</p>
+                    <p class="materia" style="font-weight: bold;font-size:18px;">{{e.nome}}</p>
+                    <p>{{e.id}}</p>
                 </ion-col>
                 <ion-col col-3>
-                    <p style="font-weight: bold;font-size:18px;">CFU</p>
-                    <p>Superato</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-    
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-            <ion-row>
-                <ion-col col-9>
-                    <p style="font-weight: bold;font-size:18px;">Nome Materia</p>
-                    <p>Codice</p>
-                </ion-col>
-                <ion-col col-3>
-                    <p style="font-weight: bold;font-size:18px;">CFU</p>
-                    <p>Superato</p>
+                    <p style="font-weight: bold;font-size:18px;">{{e.cfu}} CFU</p>
                 </ion-col>
             </ion-row>
         </ion-grid>
