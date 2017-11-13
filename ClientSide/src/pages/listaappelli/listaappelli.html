@@ -15,8 +15,8 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let appello of listaAppelli" (click)="Navigate(appello.info)">
-		<ion-card-header text-wrap class="materia" style="font-weight: bold;font-size: 18px;">{{appello.nomeMateria}}</ion-card-header>
-        <ion-card-content>{{appello.data}}</ion-card-content>
+    <ion-card *ngFor="let a of appelli" (click)="Navigate(a)" style="text-align: center;">
+		<ion-card-header text-wrap class="materia" style="font-weight: bold;font-size: 21px;">{{a.materiaurl.nome}}</ion-card-header>
+        <ion-card-content>{{a.data}}</ion-card-content>
 	</ion-card>
 </ion-content>

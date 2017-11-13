@@ -29,7 +29,7 @@ import { AulePage } from '../pages/aulelibere/aule';
 import { Blocco0Page } from '../pages/aulelibere/blocco0/blocco0';
 import { Blocco1Page } from '../pages/aulelibere/blocco1/blocco1';
 import { Blocco2Page } from '../pages/aulelibere/blocco2/blocco2';
-//import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
+import { DettaglioAppelliPage } from '../pages/dettaglioappelli/dettaglioappelli';
 import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
 import { QuestionarioPage } from '../pages/questionario/questionario';
 import { ConfermaPrenotazionePage } from '../pages/confermaprenotazione/confermaprenotazione'
@@ -66,7 +66,7 @@ import { HttpModule } from '@angular/http';
     Blocco0Page,
     Blocco1Page,
     Blocco2Page,
-  //  DettaglioAppelliPage,
+    DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
     ConfermaPrenotazionePage,
@@ -102,7 +102,7 @@ import { HttpModule } from '@angular/http';
     Blocco0Page,
     Blocco1Page,
     Blocco2Page,
-    //DettaglioAppelliPage,
+    DettaglioAppelliPage,
     ListaAppelliPage,
     QuestionarioPage,
     ConfermaPrenotazionePage,

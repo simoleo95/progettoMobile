@@ -6,11 +6,6 @@
             </button>
         </ion-buttons>
         <ion-title style="text-align: center;">Dettagli Appello</ion-title>
-        <ion-buttons right>
-            <button ion-button icon-only style="padding: 0 8px !importan;" (click)="openAvatar()">
-                <ion-icon name="person"></ion-icon>
-            </button>
-        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -18,24 +13,26 @@
     <ion-grid>
         <ion-row>
             <ion-col col-12>
-                <p>Nome Materia: {{appello.nomeMateria}}</p>
-                <p *ngIf="appello.docenti.length === 1">Docente: {{appello.docenti[0].nome}} {{appello.docenti[0].cognome}}</p>
-				<p *ngIf="appello.docenti.length > 1" class="no-margin-bottom">Docenti:</p>
-				<ion-item *ngIf="appello.docenti.length > 1" no-lines>
-					<p *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
+                <p>Nome Materia: {{info.materiaurl.nome}}</p>
+                <p *ngIf="info.materiaurl['profurl'].length === 1">Docente: {{info.materiaurl['profurl'][0].nome}} {{info.materiaurl['profurl'][0].cognome}}</p>
+				<p *ngIf="info.materiaurl['profurl'].length > 1" class="no-margin-bottom">Docenti:</p>
+				<ion-item *ngIf="info.materiaurl['profurl'].length > 1" no-lines>
+					<p *ngFor="let d of info.materiaurl['profurl']">{{d.nome}} {{d.cognome}}</p>
 				</ion-item>
-                <p>Data: {{appello.data}}</p>
-                <p>Tipologia: {{appello.tipologia}}</p>
-                <p>Aula: {{appello.aula}}</p>
-                <p>Data Scadenza: {{appello.scadenza}}</p>
-				<p>Descrizione: {{appello.descrizione}}</p>
+                <p>Data: {{info.data}}</p>
+                <p>Aula: {{info.aulaurl.id}}</p>
+                <p>Data Scadenza: {{info.data}}</p>
+				<p>Descrizione: {{info.descrizione}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
+<!--
     <ion-card (click)="Navigate()">
         <ion-card-content>
             <p>Conferma</p>
         </ion-card-content>
     </ion-card>
+-->
+    <button ion-button full (click)="Navigate()">Conferma</button>
 </ion-content>
 
