@@ -19,10 +19,10 @@ export class PagatePage {
   tasse: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
-      this.JsonService.getData(this.auth.getUserInfo()).then(data => {
-           for (let entry in data['tasse']) {
-               if(data['tasse'][entry].pagata) {
-                   this.tasse.push(data['tasse'][entry]);   
+      this.JsonService.getData(this.auth.getUserInfo(), "tasse").then(data => {
+           for (let entry in data) {
+               if(data[entry].pagata) {
+                   this.tasse.push(data[entry]);   
                }
            }
        });
