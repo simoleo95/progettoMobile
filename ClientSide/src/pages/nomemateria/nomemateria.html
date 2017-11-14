@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="text-align:center;padding-right:50px;">{{dettaglio.nomeMateria}}</ion-title>
+    <ion-title style="text-align:center;padding-right:50px;">{{info.nome}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,9 +9,15 @@
         <!-- Righe per medie -->
         <ion-row style="border-bottom: 1px solid #AAA;">
             <ion-col col-12>
-                <p>Docente: {{dettaglio.docente}}</p>
-                <p>A.A.: {{dettaglio.annoAccademico}}</p>
-                <p>Crediti: {{dettaglio.crediti}}</p>
+                <p *ngIf="info['profurl'].length === 1"><span style="font-weight: bold;">Docente:</span> {{info['profurl'][0].nome}} {{info['profurl'][0].cognome}}</p>
+				<p *ngIf="info['profurl'].length > 1" class="no-margin-bottom"><span style="font-weight: bold;">Docenti:</span></p>
+				<ion-item *ngIf="info['profurl'].length > 1" no-lines>
+					<p *ngFor="let d of info['profurl']">{{d.nome}} {{d.cognome}}</p>
+				</ion-item>
+                <p><span style="font-weight: bold;">Anno:</span> {{info.anno}}</p>
+                <p><span style="font-weight: bold;">Semestre:</span> {{info.semestre}}</p>
+                <p><span style="font-weight: bold;">CFU:</span> {{info.cfu}}</p>
+                <p><span style="font-weight: bold;">Tipo</span> CFU: {{info.tipocfu}}</p>
             </ion-col>
         </ion-row>
         <ion-row>

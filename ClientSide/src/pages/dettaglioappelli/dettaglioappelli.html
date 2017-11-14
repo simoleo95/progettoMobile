@@ -13,16 +13,16 @@
     <ion-grid>
         <ion-row>
             <ion-col col-12>
-                <p>Nome Materia: {{info.materiaurl.nome}}</p>
-                <p *ngIf="info.materiaurl['profurl'].length === 1">Docente: {{info.materiaurl['profurl'][0].nome}} {{info.materiaurl['profurl'][0].cognome}}</p>
-				<p *ngIf="info.materiaurl['profurl'].length > 1" class="no-margin-bottom">Docenti:</p>
+                <p><span style="font-weight: bold;">Nome Materia:</span> {{info.materiaurl.nome}}</p>
+                <p *ngIf="info.materiaurl['profurl'].length === 1"><span style="font-weight: bold;">Docente:</span> {{info.materiaurl['profurl'][0].nome}} {{info.materiaurl['profurl'][0].cognome}}</p>
+                <p *ngIf="info.materiaurl['profurl'].length > 1" class="no-margin-bottom"><span style="font-weight: bold;">Docenti:</span></p>
 				<ion-item *ngIf="info.materiaurl['profurl'].length > 1" no-lines>
 					<p *ngFor="let d of info.materiaurl['profurl']">{{d.nome}} {{d.cognome}}</p>
 				</ion-item>
-                <p>Data: {{info.data}}</p>
-                <p>Aula: {{info.aulaurl.id}}</p>
-                <p>Data Scadenza: {{info.data}}</p>
-				<p>Descrizione: {{info.descrizione}}</p>
+                    <p><span style="font-weight: bold;">Data:</span> {{info.data}}</p>
+                    <p><span style="font-weight: bold;">Aula:</span> {{info.aulaurl.id}}</p>
+                    <p><span style="font-weight: bold;">Data Scadenza:</span> {{info.data}}</p>
+                    <p><span style="font-weight: bold;">Descrizione:</span> {{info.descrizione}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>

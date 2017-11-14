@@ -18,14 +18,20 @@ export class Anno1Page {
          this.JsonService.getData(this.auth.getUserInfo(), "tutti_i_corsi").then(data => {
            for (let entry in data) {
                if(data[entry].anno == "1") {
-                   this.esami.push(data[entry]);   
+                   for (let index in data[entry]['profurl']) {
+                        this.JsonService.getGeneric(data[entry]['profurl'][index]).then(temp => {
+                           data[entry]['profurl'][index] = temp;
+                        });
+                    }
+                   
+                   this.esami.push(data[entry]);
                }
            }
        });
   }
     
-  Navigate() {
-      this.appCtrl.getRootNav().push(NomemateriaPage);
+  Navigate(info) {
+      this.appCtrl.getRootNav().push(NomemateriaPage, { param1: info });
   }
 
   ionViewDidLoad() {

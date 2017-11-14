@@ -1145,3 +1145,7 @@
 0:0:0:0:0:0:0:1 - - [13/Nov/2017:19:26:34 +0100] "GET /MYUNIVAQ3/rest/generic/professore/10 HTTP/1.1" 200 74
 0:0:0:0:0:0:0:1 - - [13/Nov/2017:19:26:34 +0100] "GET /MYUNIVAQ3/rest/generic/professore/12 HTTP/1.1" 200 77
 0:0:0:0:0:0:0:1 - - [13/Nov/2017:19:26:34 +0100] "GET /MYUNIVAQ3/rest/generic/professore/13 HTTP/1.1" 200 77
+127.0.0.1 - - [13/Nov/2017:19:29:57 +0100] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2017:19:29:57 +0100] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2017:19:29:57 +0100] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - - [13/Nov/2017:19:29:58 +0100] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -

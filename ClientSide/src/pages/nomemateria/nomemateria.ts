@@ -13,14 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'nomemateria.html',
 })
 export class NomemateriaPage {
-  dettaglio = {
-    nomeMateria: "Applicazioni per Dispositivi Mobili",
-    docente: "Amleto De Salle",
-    annoAccademico: "2017/2018",
-    crediti: 6
-  }
+    
+  info: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+      this.info = navParams.get('param1');
+      console.log(this.info);
   }
 
   ionViewDidLoad() {
