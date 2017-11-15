@@ -142,4 +142,23 @@ public class GenericResource {
        q.salva();
        return q;
     }
+    
+     @POST
+    @Path("questionario")
+    @Produces({ MediaType.TEXT_PLAIN})
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String trovaquestionario(Questionario quest) throws SQLException {
+        
+     
+       String p = "MYUNIVAQ3\\questionari\\"+quest.getStudente()+"_"+ quest.getMateria() +"_"+ quest.getProf() +".json" ;  
+       Questionario q = new Questionario(quest.getStudente(), quest.getMateria(), quest.getProf(),p , quest.getQuestionario());
+       boolean out = q.find(q.getStudente(),q.getMateria(),q.getProf());
+       if (out){
+           return "questionario esistente";
+       }else{
+       return "questionario ancora non inserito";
+       }
+       
+       
+    }
 }

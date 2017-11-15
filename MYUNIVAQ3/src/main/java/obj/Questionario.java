@@ -100,11 +100,12 @@ public class Questionario {
         boolean out = false;
     String query = "select * " +
                    "from  MYUNIVAQ.Questionario "+
-                   "WHERE Questionario.fk_materia = \'" + matricola +"\'"
+                   "WHERE Questionario.fk_materia = \'" + materia +"\'"
             + " AND"
-            + " Questionario.fk_studente =  \'" + materia +"\'"
+            + " Questionario.fk_studente =  \'" +  matricola +"\'"
             + " AND "
             + " Questionario.fk_pro =  \'" + profid +"\'" ;
+    System.out.println(query);
     try {
         stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query);
