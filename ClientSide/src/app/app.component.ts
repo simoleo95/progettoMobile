@@ -5,13 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AvatarPage } from '../pages/avatar/avatar';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage} from '../pages/settings/settings';
-import { TabsPage } from '../pages/orario/tabs';
 import { TassePage } from '../pages/tasse/tasse';
 import { LibrettoPage } from '../pages/libretto/libretto';
 import { PianodistudiPage } from '../pages/pianodistudi/pianodistudi';
 import { LoginPage } from '../pages/login/login';
 import { AulePage } from '../pages/aulelibere/aule';
 import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
+import { OrarioPage } from '../pages/orario/orario';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,12 +29,12 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { icon: 'home', title: 'Home', component: HomePage },
-      { icon: 'time', title: 'Orario', component: TabsPage },
+      { icon: 'time', title: 'Orario', component: OrarioPage },
       { icon: 'cash', title: 'Tasse', component: TassePage },
       { icon: 'book', title: 'Libretto', component: LibrettoPage },
       { icon: 'school', title: 'Piano di studi', component: PianodistudiPage },
-      { icon: 'school', title: 'Aule Libere', component: AulePage },
-      { icon: 'school', title: 'Lista Appelli', component: ListaAppelliPage },
+      { icon: 'information-circle', title: 'Aule Libere', component: AulePage },
+      { icon: 'create', title: 'Lista Appelli', component: ListaAppelliPage },
       { icon: 'settings', title: 'Impostazioni', component: SettingsPage }
      // { icon: 'contact', title: 'Profilo' , component: AvatarPage}
     ];

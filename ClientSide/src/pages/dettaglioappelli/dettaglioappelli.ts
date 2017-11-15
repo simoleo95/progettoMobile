@@ -14,4 +14,9 @@ export class DettaglioAppelliPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App) {
         this.info = navParams.get('param1');
     }
+    
+  Navigate() {
+      
+      //this.appCtrl.getRootNav().push(NomemateriaPage);
+  }
 }
