@@ -12,10 +12,6 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { SettingsPage } from '../pages/settings/settings';
 import { AvatarPage } from '../pages/avatar/avatar';
-import { TabsPage } from '../pages/orario/tabs';
-import { Page1Page } from '../pages/orario/page1/page1';
-import { Page2Page } from '../pages/orario/page2/page2';
-import { Page3Page } from '../pages/orario/page3/page3';
 import { TassePage } from '../pages/tasse/tasse';
 import { DovutePage } from '../pages/tasse/dovute/dovute';
 import { PagatePage } from '../pages/tasse/pagate/pagate';
@@ -34,6 +30,7 @@ import { ListaAppelliPage } from '../pages/listaappelli/listaappelli';
 import { QuestionarioPage } from '../pages/questionario/questionario';
 import { ConfermaPrenotazionePage } from '../pages/confermaprenotazione/confermaprenotazione'
 import { LoginPage } from '../pages/login/login';
+import { OrarioPage } from '../pages/orario/orario';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,10 +46,6 @@ import { HttpModule } from '@angular/http';
     ListPage,
     SettingsPage,
     AvatarPage,
-    Page1Page,
-    Page2Page,
-    TabsPage,
-    Page3Page,
     TassePage,
     DovutePage,
     PagatePage,
@@ -70,7 +63,8 @@ import { HttpModule } from '@angular/http';
     ListaAppelliPage,
     QuestionarioPage,
     ConfermaPrenotazionePage,
-    LoginPage
+    LoginPage,
+    OrarioPage
   ],
   imports: [
     BrowserModule,
@@ -85,10 +79,6 @@ import { HttpModule } from '@angular/http';
     ListPage,
     SettingsPage,
     AvatarPage,
-    Page1Page,
-    Page2Page,
-    TabsPage,
-    Page3Page,
     TassePage,
     DovutePage,
     PagatePage,
@@ -106,7 +96,8 @@ import { HttpModule } from '@angular/http';
     ListaAppelliPage,
     QuestionarioPage,
     ConfermaPrenotazionePage,
-    LoginPage
+    LoginPage,
+    OrarioPage
   ],
   providers: [
     StatusBar,
