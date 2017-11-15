@@ -19,10 +19,19 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class OrarioPage {
     
     giorno: string;
+    orario: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App,
 			   public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
       this.giorno = "lunedì";
+      
+      this.JsonService.getData(this.auth.getUserInfo(), "orario").then(data => {
+         for (let entry in data) {
+             data[entry].oraInizio = (data[entry].oraInizio).slice(0, -3);
+             data[entry].oraFine = (data[entry].oraFine).slice(0, -3);
+             this.orario.push(data[entry]);
+         } 
+      });
     
   }
 

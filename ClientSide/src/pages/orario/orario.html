@@ -19,16 +19,16 @@
       <ion-segment-button value="lunedì">
         LUN
       </ion-segment-button>
-      <ion-segment-button value="martedi">
+      <ion-segment-button value="martedì">
         MAR
       </ion-segment-button>
-      <ion-segment-button value="mercoledi">
+      <ion-segment-button value="mercoledì">
         MER
       </ion-segment-button>
-      <ion-segment-button value="giovedi">
+      <ion-segment-button value="giovedì">
         GIO
       </ion-segment-button>
-      <ion-segment-button value="venerdi">
+      <ion-segment-button value="venerdì">
         VEN
       </ion-segment-button>
     </ion-segment>
@@ -38,58 +38,20 @@
 
 <ion-content>
 <div [ngSwitch]="giorno">
-    <ion-list *ngSwitchCase="'lunedì'">
+    <ion-list *ngSwitchCase="giorno">
       <ion-item>
        	<ion-grid align="center">
-
+            
   		    <ion-row align="center">
-            <ion-col col-4>ORA</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
+                <ion-col col-4 style="font-weight: bold;">ORA</ion-col>
+    		    <ion-col col-4 style="font-weight: bold;">MATERIA</ion-col>
+    		    <ion-col col-4 style="font-weight: bold;">AULA</ion-col>
   		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>8:30-9:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>9:30-10:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>  		  
-  		      <ion-row>
-    		    <ion-col col-4>10:30-11:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>11:30-12:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-12 >PAUSA PRANZO</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>14:30-15:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>15:30-16:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>16:30-17:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row>
-  		    <ion-row>
-    		    <ion-col col-4>17:30:18:30</ion-col>
-    		    <ion-col col-4>MATERIA</ion-col>
-    		    <ion-col col-4>AULA</ion-col>
-  		    </ion-row> 
+            <ion-row align="center" *ngFor="let o of orario">
+                <ion-col *ngIf="o.giorno == giorno" col-4>{{o.oraInizio}} - {{o.oraFine}}</ion-col>
+                <ion-col *ngIf="o.giorno == giorno" col-4>{{o.nomeMateria}}</ion-col>
+                <ion-col *ngIf="o.giorno == giorno" col-4>{{o.aula.id}}</ion-col>
+            </ion-row>
 
         </ion-grid>
        </ion-item>
