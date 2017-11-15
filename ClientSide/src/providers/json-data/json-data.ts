@@ -34,6 +34,25 @@ export class JsonDataProvider {
         });
     }
     
+    getQuestionario(utente, materia, prof) {
+        return new Promise(resolve => {
+           
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+            
+            let body = {
+              "studente": String(utente.matricola),
+              "materia": materia,
+              "prof": String(prof)
+            };
+            
+            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/generic/questionario', JSON.stringify(body), {headers: headers})
+                .subscribe(data => {
+                    resolve(data.text());
+                });
+        });
+    }
+    
     getGeneric(url) {
         return new Promise(resolve => {
            

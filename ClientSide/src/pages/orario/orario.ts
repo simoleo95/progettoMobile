@@ -23,6 +23,7 @@ export class OrarioPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App,
 			   public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
       this.giorno = "lunedì";
+    
   }
 
   ionViewDidLoad() {
