@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, App, AlertController, Nav, IonicPage  } from 'ionic-angular';
 import { AvatarPage } from '../avatar/avatar';
-import { FeedProvider, Feed } from '../../providers/feed/feed';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FeedProvider, FeedItem, Feed } from '../../providers/feed/feed';
 
 @Component({
   selector: 'page-home',
@@ -10,44 +11,16 @@ import { FeedProvider, Feed } from '../../providers/feed/feed';
 export class HomePage {
   rootPage = 'FeedListPage';
   feeds: Feed[];
-  constructor(public nav: NavController, public appCtrl: App, private navController: NavController, private feedProvider: FeedProvider, public alertCtrl: AlertController) { }
+  
+  constructor(public nav: NavController, public appCtrl: App, private navController: NavController, private feedProvider: FeedProvider, public alertCtrl: AlertController, public iab: InAppBrowser) {
+    
+      this.feedProvider.getArticlesForUrl('http://www.disim.univaq.it/didattica/content.php?fid=rss&pid=193&did=8').subscribe(res => {
+        this.feeds = res;
+      }); 
+  }
 
   openAvatar() {
       this.appCtrl.getRootNav().push(AvatarPage);
-  }
-
-  public addFeed() {
-    let prompt = this.alertCtrl.create({
-      title: 'Add Feed URL',
-      inputs: [
-        {
-          name: 'name',
-          placeholder: 'The best Feed ever'
-        },
-        {
-          name: 'url',
-          placeholder: 'http://www.myfeedurl.com/feed'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            let newFeed = new Feed(data.name, data.url);
-            this.feedProvider.addFeed(newFeed).then(
-              res => {
-                this.loadFeeds();
-              }
-            );
-          }
-        }
-      ]
-    });
-    prompt.present();
   }
 
   private loadFeeds() {
@@ -57,13 +30,12 @@ export class HomePage {
       });
   }
 
-  public openFeed(feed: Feed) {
-    this.nav.setRoot('FeedListPage', { 'selectedFeed': feed });
+  public openArticle(url: string) {
+    this.iab.create(url, '_blank');
   }
 
-  public ionViewWillEnter() {
-    this.loadFeeds();
-  }
-
+//  public openFeed(feed: Feed) {
+//    this.nav.setRoot('FeedListPage', { 'selectedFeed': feed });
+//  }
 
 }

@@ -11,6 +11,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class JsonDataProvider {
     
+    host: string = "192.168.1.174";
+    
     constructor(public http: Http) {
         console.log('Hello JsonDataProvider Provider');
     }
@@ -26,7 +28,7 @@ export class JsonDataProvider {
                 "token": utente.token
             };
             
-            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/' + utente.matricola + '/' + parametro, JSON.stringify(body), {headers: headers})
+            this.http.post('http://' + this.host +':8088/MYUNIVAQ3/rest/' + utente.matricola + '/' + parametro, JSON.stringify(body), {headers: headers})
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);
@@ -46,7 +48,7 @@ export class JsonDataProvider {
               "prof": String(prof)
             };
             
-            this.http.post('http://localhost:8088/MYUNIVAQ3/rest/generic/questionario', JSON.stringify(body), {headers: headers})
+            this.http.post('http://' + this.host + ':8088/MYUNIVAQ3/rest/generic/questionario', JSON.stringify(body), {headers: headers})
                 .subscribe(data => {
                     resolve(data.text());
                 });
@@ -59,7 +61,9 @@ export class JsonDataProvider {
             let headers = new Headers();
             headers.append('Content-Type','application/json');
             
-            this.http.get(url, {headers: headers})
+            
+            
+            this.http.get("http://" + this.host + url.slice(16), {headers: headers})
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);
@@ -77,7 +81,7 @@ export class JsonDataProvider {
                  "psw":password
              }
              
-              this.http.post('http://localhost:8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
+              this.http.post('http://' + this.host + ':8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
                  .map(res => res.json())
                  .subscribe(data => {
                      resolve(data);

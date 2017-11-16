@@ -1,4 +1,5 @@
 <ion-content class="feed-list" padding>
+    <ion-title style="text-align: center;">Recent articles</ion-title><br>
   <ion-spinner *ngIf="loading" id="feed-spinner"></ion-spinner>
   <ion-list *ngIf="selectedFeed" class="spinner">
     <ion-item *ngFor="let item of articles" (click)="openArticle(item.link)" class="feed-article">

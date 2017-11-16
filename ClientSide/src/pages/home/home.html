@@ -13,25 +13,19 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar secondary>
-      <ion-title>Recent articles</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let feed of feeds" (click)="openFeed(feed)">
-        {{feed.title}}
-      </button>
-    </ion-list>
-    <button ion-button full (click)="addFeed()" action secondary>
-      <ion-icon name="add"></ion-icon> Add Feed
-    </button>
-  </ion-content>
-
-</ion-menu>
-
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-content class="feed-list" padding>
+    <ion-title style="text-align: center;">Recent articles</ion-title><br>
+  <ion-spinner *ngIf="loading" id="feed-spinner"></ion-spinner>
+  <ion-list *ngIf="selectedFeed" class="spinner">
+    <ion-item *ngFor="let item of articles" (click)="openArticle(item.link)" class="feed-article">
+      <div class="article-title">{{item.title}}</div><br>
+      <p [innerHtml]="item.description"></p>
+    </ion-item>
+  </ion-list>
+  <ion-row *ngIf="!selectedFeed">
+    <ion-col text-center>
+      Please select a feed!
+    </ion-col>
+  </ion-row>
+    <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+</ion-content>
