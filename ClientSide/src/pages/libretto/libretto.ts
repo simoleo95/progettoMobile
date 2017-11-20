@@ -16,14 +16,6 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'libretto.html',
 })
 export class LibrettoPage {
-//  libretto: {
-//	  mediaAritmetica: number,
-//	  mediaPonderata: number,
-//	  esami: Array<{nomeMateria: string, data: string, voto: string, cfu: number}>} = {
-//		  mediaAritmetica: 0,
-//		  mediaPonderata: 0,
-//		  esami: []
-//	  };
     
     mediaAritmetica: number;
     mediaPonderata: number;

@@ -24,15 +24,12 @@ export class DettaglioAppelliPage {
       
       // Per adesso solo controllo su primo prof della lista
       this.JsonService.getQuestionario(this.auth.getUserInfo(), this.info['materiaurl'].id, this.info['materiaurl']['profurl'][0].id).then(data => {
-          console.log(data);
-          
           if (data == "questionario ancora non inserito") {
               this.appCtrl.getRootNav().push(QuestionarioPage, {'param1': this.info});
           }
           else {
             this.appCtrl.getRootNav().push(ConfermaPrenotazionePage, {'param1': this.info});   
           }
-          
       });
       
       //this.appCtrl.getRootNav().push(NomemateriaPage);

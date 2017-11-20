@@ -18,7 +18,6 @@ export class NomemateriaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.info = navParams.get('param1');
-      console.log(this.info);
   }
 
   ionViewDidLoad() {

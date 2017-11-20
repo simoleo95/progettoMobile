@@ -33,7 +33,6 @@ export class FeedProvider {
 
   public getSavedFeeds() {
     return this.storage.get('savedFeeds').then(data => {
-        console.log("DATA JSON: " + JSON.parse(data));
       let objFromString = JSON.parse(data);
       if (data !== null && data !== undefined) {
         return JSON.parse(data);

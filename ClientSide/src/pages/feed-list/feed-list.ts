@@ -30,7 +30,6 @@ export class FeedListPage {
   loadArticles() {
     this.loading = true;
     this.feedProvider.getArticlesForUrl('http://www.disim.univaq.it/didattica/content.php?fid=rss&pid=193&did=8').subscribe(res => {
-        console.log("LoadArticle: " + res);
       this.articles = res;
       this.loading = false;
     });
