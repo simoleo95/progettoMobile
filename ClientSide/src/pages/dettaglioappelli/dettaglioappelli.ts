@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AvatarPage } from '../avatar/avatar';
 import { QuestionarioPage } from '../questionario/questionario';
+import { ConfermaPrenotazionePage } from '../confermaprenotazione/confermaprenotazione';
+import { QuestionarioPage } from '../questionario/questionario';
 
 import { JsonDataProvider } from '../../providers/json-data/json-data';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -24,7 +26,13 @@ export class DettaglioAppelliPage {
       this.JsonService.getQuestionario(this.auth.getUserInfo(), this.info['materiaurl'].id, this.info['materiaurl']['profurl'][0].id).then(data => {
           console.log(data);
           
-          // Inserire controllo questionario eseguito oppure no
+          if (data == "questionario ancora non inserito") {
+              this.appCtrl.getRootNav().push(QuestionarioPage, {'param1': this.info});
+          }
+          else {
+            this.appCtrl.getRootNav().push(ConfermaPrenotazionePage, {'param1': this.info});   
+          }
+          
       });
       
       //this.appCtrl.getRootNav().push(NomemateriaPage);

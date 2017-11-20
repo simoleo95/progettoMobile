@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="text-align:center;padding-right:50px;">{{appello.nomeMateria}}</ion-title>
+    <ion-title style="text-align:center;padding-right:50px;">{{info.materiaurl.nome}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,21 +8,21 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <h3>Prenotazione avvenuta con successo</h3>
+        <h3>{{msg}}</h3>
       </ion-col>
     </ion-row>
     <ion-row style="border-bottom: 1px solid #AAA;">
       <ion-col col-12>
-        <p>Nome Materia: {{appello.nomeMateria}}</p>
-        <p *ngIf="appello.docenti.length === 1">Docente: {{appello.docenti[0].nome}} {{appello.docenti[0].cognome}}</p>
-		<p *ngIf="appello.docenti.length > 1" class="no-margin-bottom">Docenti:</p>
-		<ion-item *ngIf="appello.docenti.length > 1" no-lines>
-			<p *ngFor="let docente of appello.docenti">{{docente.nome}} {{docente.cognome}}</p>
-		</ion-item>
-        <p>Data: {{appello.data}}</p>
-        <p>Tipologia: {{appello.tipologia}}</p>
-        <p>Aula: {{appello.aula}}</p>
-        <p>Descrizione: {{appello.descrizione}}</p>
+                <p><span style="font-weight: bold;">Nome Materia:</span> {{info.materiaurl.nome}}</p>
+                <p *ngIf="info.materiaurl['profurl'].length === 1"><span style="font-weight: bold;">Docente:</span> {{info.materiaurl['profurl'][0].nome}} {{info.materiaurl['profurl'][0].cognome}}</p>
+                <p *ngIf="info.materiaurl['profurl'].length > 1" class="no-margin-bottom"><span style="font-weight: bold;">Docenti:</span></p>
+				<ion-item *ngIf="info.materiaurl['profurl'].length > 1" no-lines>
+					<p *ngFor="let d of info.materiaurl['profurl']">{{d.nome}} {{d.cognome}}</p>
+				</ion-item>
+                    <p><span style="font-weight: bold;">Data:</span> {{info.data}}</p>
+                    <p><span style="font-weight: bold;">Aula:</span> {{info.aulaurl.id}}</p>
+                    <p><span style="font-weight: bold;">Data Scadenza:</span> {{info.data}}</p>
+                    <p><span style="font-weight: bold;">Descrizione:</span> {{info.descrizione}}</p>
       </ion-col>
     </ion-row>
   </ion-grid>

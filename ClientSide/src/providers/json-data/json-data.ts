@@ -8,10 +8,20 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
+export class MyArray {
+    domanda: string;
+    risposta: string;
+    
+    constructor(domanda: string, risposta: string) {
+        this.domanda = domanda;
+        this.risposta = risposta;
+    }
+}
+
 @Injectable()
 export class JsonDataProvider {
     
-    host: string = "192.168.1.174";
+    host: string = "localhost";
     
     constructor(public http: Http) {
         console.log('Hello JsonDataProvider Provider');
@@ -88,5 +98,34 @@ export class JsonDataProvider {
                  });
          });
      }
+    
+    putQuestionario(domande, risposte, utente, materia, prof) {
+         return new Promise(resolve => {
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+            
+             let result: Array<MyArray> = [];
+             
+            for (let entry in domande) {
+                let temp = new MyArray(domande[entry]['question'], domande[entry]['answers'][risposte[entry]]);
+                result.push(temp);
+            }
+             
+             let body = {
+              "studente": String(utente.matricola),
+              "materia": materia,
+              "prof": String(prof),
+              "questionario": result
+             };
+             
+             console.log(JSON.stringify(body));
+             
+              this.http.post('http://' + this.host + ':8088/MYUNIVAQ3/rest/generic/questionariosalva', JSON.stringify(body), {headers: headers})
+                 .map(res => res.json())
+                 .subscribe(data => {
+                     resolve(data);
+                 });
+         });
+    }
 
 }

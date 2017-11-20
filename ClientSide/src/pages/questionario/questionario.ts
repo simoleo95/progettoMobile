@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App, Slides, ToastController } fro
 import { AvatarPage } from '../avatar/avatar';
 import { ConfermaPrenotazionePage } from '../confermaprenotazione/confermaprenotazione'
 import { JsonDataProvider } from '../../providers/json-data/json-data';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the QuestionarioPage page.
@@ -16,8 +17,8 @@ import { JsonDataProvider } from '../../providers/json-data/json-data';
 })
 export class QuestionarioPage {
   @ViewChild(Slides) slides: Slides;
-  appello: {idMateria: string, nomeMateria: string, docenti: { nome: string, cognome: string }[], data: string,
-    aula: string, descrizione: string, scadenza: string, tipologia: string};
+
+  info: Array<any> = [];
 
   answers = [];
   
@@ -145,8 +146,8 @@ export class QuestionarioPage {
   }
 ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public appCtrl: App,
-    public JsonService: JsonDataProvider, public toastCtrl: ToastController) {
-    this.appello = navParams.get('appello');
+    public JsonService: JsonDataProvider, public toastCtrl: ToastController, private auth: AuthServiceProvider) {
+    this.info = navParams.get('param1');
   }
 
   ionViewDidLoad() {
@@ -196,11 +197,10 @@ export class QuestionarioPage {
   }
 
   submit() {
-    //this.JsonService.sendQuestionaire(this.appello.idMateria, this.answers).then(() => {
-      //this.JsonService.book(this.appello.idMateria, this.appello.data).then(() => {
-          this.appCtrl.getRootNav().push(ConfermaPrenotazionePage, { appello: this.appello });
-      // });
-    //});
+    
+      this.JsonService.putQuestionario(this.questionaire, this.answers, this.auth.getUserInfo(), this.info.materiaurl.id, this.info.materiaurl['profurl'][0].id).then(data => {
+          this.appCtrl.getRootNav().push(ConfermaPrenotazionePage);
+      });
   }
   
   openAvatar() {

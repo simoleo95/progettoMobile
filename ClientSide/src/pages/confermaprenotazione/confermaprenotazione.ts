@@ -10,13 +10,13 @@ import { HomePage } from '../home/home'
 })
 export class ConfermaPrenotazionePage {
   @ViewChild(Navbar) navBar: Navbar;
-  appello: {
-    idMateria: string, nomeMateria: string, docenti: { nome: string, cognome: string }[], data: string,
-    aula: string, descrizione: string, scadenza: string, tipologia: string
-  };
+
+   info: Array<any>;
+   msg: String = "Prenotazione effettuata con successo!";
+   
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform: Platform, private calendar: Calendar) {
-    this.appello = navParams.get('appello');
+        this.info = navParams.get('param1');
   }
 
   ionViewDidLoad() {
