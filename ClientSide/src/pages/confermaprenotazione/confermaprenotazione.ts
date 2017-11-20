@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Calendar } from '@ionic-native/calendar';
 import { IonicPage, NavController, NavParams, Platform, Navbar } from 'ionic-angular';
-import { HomePage } from '../home/home'
+import { HomePage } from '../home/home';
+import { JsonDataProvider } from '../../providers/json-data/json-data';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -12,11 +14,19 @@ export class ConfermaPrenotazionePage {
   @ViewChild(Navbar) navBar: Navbar;
 
    info: Array<any>;
-   msg: String = "Prenotazione effettuata con successo!";
+   msg: String = "";
    
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public platform: Platform, private calendar: Calendar) {
-        this.info = navParams.get('param1');
+    public platform: Platform, private calendar: Calendar,
+    public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
+      this.info = navParams.get('param1');
+      
+      this.JsonService.putIscritto(this.auth.getUserInfo(), this.info.id).then(data => {
+          if (data == "errore nel server")
+              this.msg = "Prenotazione già effettuata!";
+          else
+              this.msg = "Prenotazione effettuata con successo!";
+      });
   }
 
   ionViewDidLoad() {

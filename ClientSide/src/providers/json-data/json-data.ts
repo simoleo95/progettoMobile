@@ -46,6 +46,26 @@ export class JsonDataProvider {
         });
     }
     
+    putIscritto(utente, appello) {
+        return new Promise(resolve => {
+    
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+            
+            let body = {
+                "user": utente.user,
+                "token": utente.token
+            };
+            
+            console.log(appello);
+            
+            this.http.put('http://' + this.host +':8088/MYUNIVAQ3/rest/' + utente.matricola + '/iscrizioneappello/' + appello, JSON.stringify(body), {headers: headers})
+                .subscribe(data => {
+                    resolve(data.text());
+                });
+        });
+    }
+    
     getQuestionario(utente, materia, prof) {
         return new Promise(resolve => {
            
@@ -64,40 +84,6 @@ export class JsonDataProvider {
                 });
         });
     }
-    
-    getGeneric(url) {
-        return new Promise(resolve => {
-           
-            let headers = new Headers();
-            headers.append('Content-Type','application/json');
-            
-            
-            
-            this.http.get("http://" + this.host + url.slice(16), {headers: headers})
-                .map(res => res.json())
-                .subscribe(data => {
-                    resolve(data);
-                });
-        });
-    }
-    
-    getUser(user, password) {
-         return new Promise(resolve => {
-            let headers = new Headers();
-            headers.append('Content-Type','application/json');
-             
-             let body = {
-                 "user":user,
-                 "psw":password
-             }
-             
-              this.http.post('http://' + this.host + ':8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
-                 .map(res => res.json())
-                 .subscribe(data => {
-                     resolve(data);
-                 });
-         });
-     }
     
     putQuestionario(domande, risposte, utente, materia, prof) {
          return new Promise(resolve => {
@@ -127,5 +113,37 @@ export class JsonDataProvider {
                  });
          });
     }
+    
+    getGeneric(url) {
+        return new Promise(resolve => {
+           
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+        
+            this.http.get("http://" + this.host + url.slice(16), {headers: headers})
+                .map(res => res.json())
+                .subscribe(data => {
+                    resolve(data);
+                });
+        });
+    }
+    
+    getUser(user, password) {
+         return new Promise(resolve => {
+            let headers = new Headers();
+            headers.append('Content-Type','application/json');
+             
+             let body = {
+                 "user":user,
+                 "psw":password
+             }
+             
+              this.http.post('http://' + this.host + ':8088/MYUNIVAQ3/rest/login', JSON.stringify(body), {headers: headers})
+                 .map(res => res.json())
+                 .subscribe(data => {
+                     resolve(data);
+                 });
+         });
+     }
 
 }
