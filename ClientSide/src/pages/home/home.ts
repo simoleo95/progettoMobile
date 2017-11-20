@@ -34,8 +34,4 @@ export class HomePage {
     this.iab.create(url, '_blank');
   }
 
-//  public openFeed(feed: Feed) {
-//    this.nav.setRoot('FeedListPage', { 'selectedFeed': feed });
-//  }
-
 }

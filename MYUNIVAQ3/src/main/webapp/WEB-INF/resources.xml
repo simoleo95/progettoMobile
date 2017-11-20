@@ -12,4 +12,10 @@ password=mysql
 userName=root
 jdbcUrl=jdbc\:mysql\://localhost\:3306/MyUnIvAq?zeroDateTimeBehavior\=convertToNull
 </Resource>
+  <Resource id="BETA1" type="javax.sql.DataSource">#Mon Nov 20 22:28:58 CET 2017
+jdbcDriver=com.mysql.jdbc.Driver
+password=mysql
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/myUNIVaq?zeroDateTimeBehavior\=convertToNull
+</Resource>
 </resources>

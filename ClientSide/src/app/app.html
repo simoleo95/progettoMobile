@@ -6,15 +6,17 @@
   </ion-header>
 
   <ion-content>
+<!--
     <ion-list>
       <ion-item style="padding-top:10px;padding-bottom:10px;background:#eee;">
         <ion-avatar item-start>
           <img src="assets/img/profilo.jpg" style="height:60px; width:60px;">
         </ion-avatar>
-         <p style="font-size:22px;">Cristiano</p>
-         <p style="font-size:22px;">Orsetti</p>
+         <p style="font-size:22px;">{{user}}</p>
+         <p style="font-size:22px;">{{user}}</p>
       </ion-item>
     </ion-list>
+-->
       <button menuClose style="font-size:18px;" ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name='{{p.icon}}' style="margin-right:10px;"></ion-icon>
         {{p.title}}
