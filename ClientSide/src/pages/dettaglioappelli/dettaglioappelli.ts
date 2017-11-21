@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AvatarPage } from '../avatar/avatar';
 import { QuestionarioPage } from '../questionario/questionario';
 import { ConfermaPrenotazionePage } from '../confermaprenotazione/confermaprenotazione';
-import { QuestionarioPage } from '../questionario/questionario';
 
 import { JsonDataProvider } from '../../providers/json-data/json-data';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';

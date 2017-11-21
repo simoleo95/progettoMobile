@@ -21,7 +21,7 @@ export class ConfermaPrenotazionePage {
     public JsonService: JsonDataProvider, private auth: AuthServiceProvider) {
       this.info = navParams.get('param1');
       
-      this.JsonService.putIscritto(this.auth.getUserInfo(), this.info.id).then(data => {
+      this.JsonService.putIscritto(this.auth.getUserInfo(), this.info['id']).then(data => {
           if (data == "errore nel server")
               this.msg = "Prenotazione già effettuata!";
           else
@@ -38,17 +38,17 @@ export class ConfermaPrenotazionePage {
     }
   }
 
-  addToCalendar() {
-	let dmy = this.appello.data.split("/"); // [dd, mm, YYYY HH:mm]
-	let hm = dmy[2].split(" ");
-	dmy[2] = hm[0]; // dmy = [dd, mm, YYYY]
-	hm = hm[1].split(":"); // hm = [hh, mm]
-    this.calendar.createEvent(this.appello.nomeMateria,
-      "Aula " + this.appello.aula,
-      null,
-      new Date(parseInt(dmy[2], 10), parseInt(dmy[1], 10) - 1,
-		parseInt(dmy[0], 10), parseInt(hm[1], 10), parseInt(hm[2], 10))
-	);
-  }
+//  addToCalendar() {
+//	let dmy = this.appello.data.split("/"); // [dd, mm, YYYY HH:mm]
+//	let hm = dmy[2].split(" ");
+//	dmy[2] = hm[0]; // dmy = [dd, mm, YYYY]
+//	hm = hm[1].split(":"); // hm = [hh, mm]
+//    this.calendar.createEvent(this.appello.nomeMateria,
+//      "Aula " + this.appello.aula,
+//      null,
+//      new Date(parseInt(dmy[2], 10), parseInt(dmy[1], 10) - 1,
+//		parseInt(dmy[0], 10), parseInt(hm[1], 10), parseInt(hm[2], 10))
+//	);
+//  }
 
 }

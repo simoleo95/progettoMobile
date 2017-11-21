@@ -197,7 +197,7 @@ export class QuestionarioPage {
   }
 
   submit() {
-      this.JsonService.putQuestionario(this.questionaire, this.answers, this.auth.getUserInfo(), this.info.materiaurl.id, this.info.materiaurl['profurl'][0].id).then(data => {
+      this.JsonService.putQuestionario(this.questionaire, this.answers, this.auth.getUserInfo(), this.info['materiaurl'].id, this.info['materiaurl']['profurl'][0].id).then(data => {
           
       });
       
