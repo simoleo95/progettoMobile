@@ -157,6 +157,7 @@ public class Orario {
     public List<Aula> aulelibere() throws SQLException{
     List<Aula> out = new LinkedList<>();
     List<Aula> occupate = new LinkedList<>();
+    List<Aula> trovato = new LinkedList<>();
      List<Aula> occupateappello = new LinkedList<>();
      String di = this.giornodellasettimana();
      String ora = this.orariorio();
@@ -193,7 +194,7 @@ for (Aula aula1 : occupate) {
     
     for (Aula aula2 : out) {
         if(aula1.getId().equals(aula2.getId())){
-            out.remove(aula2);
+            trovato.add(aula2);
         }
         
     }
@@ -202,11 +203,15 @@ for (Aula aula1 : occupate) {
 for (Aula aula1 : occupateappello) {
     for (Aula aula2 : out) {
         if(aula1.getId().equals(aula2.getId())){
-            out.remove(aula2);
+            trovato.add(aula2);
         }
     }
     
 }
+for(Aula aula3 :trovato){
+            out.remove(aula3);
+}
+
         }
     }catch (SQLException e ) {
         

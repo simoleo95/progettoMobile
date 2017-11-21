@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(gid.myunivaq3.GenericResource.class);
         resources.add(gid.myunivaq3.LoginResource.class);
+        resources.add(gid.myunivaq3.OrarioResource.class);
         resources.add(gid.myunivaq3.StudenteResource.class);
     }
     

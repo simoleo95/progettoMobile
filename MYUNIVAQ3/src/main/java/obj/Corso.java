@@ -106,7 +106,7 @@ public class Corso {
         Statement stmt = null;
     String query = "select * " +
                    "from  MYUNIVAQ.CorsoDiLaurea "+
-                    "WHERE CorsoDiLaurea.id =" +i ;
+                    "WHERE CorsoDiLaurea.id = '" +i+"'" ;
     try {
         stmt = con.createStatement();
              try (ResultSet rs = stmt.executeQuery(query)) {
@@ -133,7 +133,7 @@ public class Corso {
         Statement stmt = null;
     String query = "select * " +
                    "from  MYUNIVAQ.MaterieCorso "+
-                   "WHERE MaterieCorso.id_corso = " +this.id ;
+                   "WHERE MaterieCorso.id_corso = '" +this.id+"'" ;
     try {
         stmt = con.createStatement();
             try (ResultSet rs = stmt.executeQuery(query)) {

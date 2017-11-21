@@ -167,21 +167,21 @@ public class Studente {
                    "WHERE EsamiSvolti.fk_studente = " +i ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        List<EsamiSvolti> le = new LinkedList<>();
-        while (rs.next()) {
-            EsamiSvolti asd = new EsamiSvolti();
-            asd.setIdMateria(rs.getString("fk_materia")); 
-            System.out.println("aaaaaaaaaaaaaaaaaaa "+rs.getString("fk_materia"));
-            asd.setVoto(rs.getInt("voto"));
-            Appello ape = new Appello();
-            ape.Load(rs.getInt("fk_appello"));
-            asd.setAppello(ape);
-            asd.setIdStudente(i);
-            le.add(asd);
-           asd.setMateriaload(rs.getString("fk_materia"));
-            }   
-        rs.close();
+        List<EsamiSvolti> le;
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 le = new LinkedList<>();
+                 while (rs.next()) {
+                     EsamiSvolti asd = new EsamiSvolti();
+                     asd.setIdMateria(rs.getString("fk_materia"));
+                     System.out.println("aaaaaaaaaaaaaaaaaaa "+rs.getString("fk_materia"));
+                     asd.setVoto(rs.getInt("voto"));
+                     Appello ape = new Appello();
+                     ape.Load(rs.getInt("fk_appello"));
+                     asd.setAppello(ape);
+                     asd.setIdStudente(i);
+                     le.add(asd);
+                     asd.setMateriaload(rs.getString("fk_materia"));
+                 }}
         setLibretto(le);
     }catch (SQLException e ) {
         
