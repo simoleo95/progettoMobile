@@ -21,7 +21,7 @@ export class MyArray {
 @Injectable()
 export class JsonDataProvider {
     
-    host: string = "192.168.1.174";
+    host: string = "localhost";
     
     constructor(public http: Http) {
         console.log('Hello JsonDataProvider Provider');

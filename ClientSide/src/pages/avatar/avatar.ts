@@ -16,7 +16,7 @@ export class AvatarPage {
 
   constructor(public nav: NavController, private auth: AuthServiceProvider, public JsonService: JsonDataProvider) {
       this.JsonService.getData(this.auth.getUserInfo()).then(data => {
-            this.info = data;
+            this.info.push(data);
       });
   }
 

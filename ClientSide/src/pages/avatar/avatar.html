@@ -15,10 +15,12 @@
       <ion-avatar item-start>
         <img src="assets/img/profilo.jpg">
       </ion-avatar>
-      <h2>{{info.nome}} {{info.cognome}}</h2>
-      <p>Matricola: {{info.matricola}}</p>
-      <p>Data di Nascita: {{info.dataDiNascita}}</p>
-      <ion-note item-end>3:43 pm</ion-note>
+      <div *ngFor="let i of info">
+          <h2>{{i.nome}} {{i.cognome}}</h2>
+          <p>Matricola: {{i.matricola}}</p>
+          <p>Data di Nascita: {{i.dataDiNascita}}</p>
+          <ion-note item-end>3:43 pm</ion-note>
+      </div>
     </ion-item>
   </ion-list>
 
