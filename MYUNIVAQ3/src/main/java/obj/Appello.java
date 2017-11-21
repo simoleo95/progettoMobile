@@ -94,21 +94,21 @@ public class Appello {
                     "WHERE Appello.id =" +i ;
     try{
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            this.id = rs.getInt("id");
-          //  this.materia.Load(rs.getString("fk_materia"));
-            Date d = rs.getDate("data_esame");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            setData(df.format(d));
-            this.descrizione= rs.getString("descrizione");
-            String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
-            this.aulaurl =a;
-        }
-    
+         try (ResultSet rs = stmt.executeQuery(query)) {
+             while (rs.next()) {
+                 this.id = rs.getInt("id");
+                 //  this.materia.Load(rs.getString("fk_materia"));
+                 Date d = rs.getDate("data_esame");
+                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                 setData(df.format(d));
+                 this.descrizione= rs.getString("descrizione");
+                 String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
+                 this.aulaurl =a;
+             }}
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     
@@ -126,25 +126,26 @@ public class Appello {
     try{
          System.out.println(query);
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            System.out.println("qualcosa");
-            out = true;
-            this.id = rs.getInt("id");
-            Materia m = new Materia();
-            m.Load(rs.getString("fk_materia"));
-            m.lite();
-            this.materia = m;
-            Date d = rs.getDate("data_esame");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            setData(df.format(d));
-            this.descrizione= rs.getString("descrizione");
-            String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
-            this.aulaurl =a;
-        }
+          try (ResultSet rs = stmt.executeQuery(query)) {
+              while (rs.next()) {
+                  System.out.println("qualcosa");
+                  out = true;
+                  this.id = rs.getInt("id");
+                  Materia m = new Materia();
+                  m.Load(rs.getString("fk_materia"));
+                  m.lite();
+                  this.materia = m;
+                  Date d = rs.getDate("data_esame");
+                  SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                  setData(df.format(d));
+                  this.descrizione= rs.getString("descrizione");
+                  String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
+                  this.aulaurl =a;
+              } }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     
@@ -164,24 +165,25 @@ public class Appello {
     try{
          System.out.println(query);
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            System.out.println("qualcosa");
-            out = true;
-            this.id = rs.getInt("id");
-            
-           
-            this.materiaurl = "http://localhost:8088/MYUNIVAQ3/rest/generic/materia/"+rs.getString("fk_materia");
-            Date d = rs.getDate("data_esame");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            setData(df.format(d));
-            this.descrizione= rs.getString("descrizione");
-            String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
-            this.aulaurl =a;
-        }
+          try (ResultSet rs = stmt.executeQuery(query)) {
+              while (rs.next()) {
+                  System.out.println("qualcosa");
+                  out = true;
+                  this.id = rs.getInt("id");
+                  
+                  
+                  this.materiaurl = "http://localhost:8088/MYUNIVAQ3/rest/generic/materia/"+rs.getString("fk_materia");
+                  Date d = rs.getDate("data_esame");
+                  SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                  setData(df.format(d));
+                  this.descrizione= rs.getString("descrizione");
+                  String a = "http://localhost:8088/MYUNIVAQ3/rest/generic/aula/" + rs.getString("aula");
+                  this.aulaurl =a;
+              } }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     
@@ -200,16 +202,17 @@ public class Appello {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-           i++;
-            
-        }
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    i++;
+                    
+                }   }
     
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
+         
         if (stmt != null) { stmt.close(); }
     }
         

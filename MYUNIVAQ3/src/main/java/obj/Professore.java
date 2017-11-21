@@ -79,25 +79,24 @@ public class Professore {
                     "WHERE Professore.id =" +i ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-            
-        
-            
-            this.data = rs.getString("dataDiNascita");
-            this.id = rs.getInt("id");
-            this.nome = rs.getString("nome");
-            this.cognome = rs.getString("cognome");
-            
-            
-            
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    
+                    
+                    
+                    this.data = rs.getString("dataDiNascita");
+                    this.id = rs.getInt("id");
+                    this.nome = rs.getString("nome");
+                    this.cognome = rs.getString("cognome");
+                    
+                    
+                    
+                }
             }
-        
-        
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         

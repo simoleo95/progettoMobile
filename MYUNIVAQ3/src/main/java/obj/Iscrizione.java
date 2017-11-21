@@ -53,16 +53,15 @@ public class Iscrizione {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-           i++;
-            
-        }
-    
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    i++;
+                    
+                }   }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         
@@ -78,13 +77,13 @@ public class Iscrizione {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        i = rs != null;
-       
-    
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                i = rs != null;
+            }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         

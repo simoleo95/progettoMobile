@@ -102,28 +102,26 @@ public class Orario {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            
-            this.id = rs.getInt("id");
-            
-                    Aula a = new Aula();
-                    a.Load(rs.getString("fk_aula"));
-                    this.aula = a;
-          
-            this.giorno =rs.getString("giorno");
-            this.oraFine = rs.getString("oraFine");
-            this.oraInizio = rs.getString("oraInizio");
-            Materia m = new Materia();
-            m.Load(rs.getString("fk_materia"));
-            this.materia = m;
-            }
-      
-       
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     
+                     this.id = rs.getInt("id");
+                     
+                     Aula a = new Aula();
+                     a.Load(rs.getString("fk_aula"));
+                     this.aula = a;
+                     
+                     this.giorno =rs.getString("giorno");
+                     this.oraFine = rs.getString("oraFine");
+                     this.oraInizio = rs.getString("oraInizio");
+                     Materia m = new Materia();
+                     m.Load(rs.getString("fk_materia"));
+                     this.materia = m;
+                 }}
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         
@@ -178,40 +176,42 @@ public class Orario {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        //aule occupate 
-        while (rs.next()) {
-            Aula au = new Aula();
-            au.Load(rs.getString("fk_aula"));
-            System.out.println("ci siamo");
-            occupate.add(au); 
+        //aule occupate
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            //aule occupate
+            while (rs.next()) {
+                Aula au = new Aula();
+                au.Load(rs.getString("fk_aula"));
+                System.out.println("ci siamo"); 
+                occupate.add(au);
             }
-        Aula asd = new Aula();
-      out = asd.tutte();
-      occupateappello = this.auleoccupatedagliappelli();
+            Aula asd = new Aula();
+            out = asd.tutte();
+            occupateappello = this.auleoccupatedagliappelli();
 //      fare la sottrazione tra out - occupate ;
-        for (Aula aula1 : occupate) {
-             
-            for (Aula aula2 : out) {
-                if(aula1.getId().equals(aula2.getId())){
-                out.remove(aula2);
-                }
-                
-            }
-            
+for (Aula aula1 : occupate) {
+    
+    for (Aula aula2 : out) {
+        if(aula1.getId().equals(aula2.getId())){
+            out.remove(aula2);
         }
-         for (Aula aula1 : occupateappello) {
-              for (Aula aula2 : out) {
-                if(aula1.getId().equals(aula2.getId())){
-                out.remove(aula2);
-                }
-            }
-            
+        
+    }
+    
+}
+for (Aula aula1 : occupateappello) {
+    for (Aula aula2 : out) {
+        if(aula1.getId().equals(aula2.getId())){
+            out.remove(aula2);
         }
-      
+    }
+    
+}
+        }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         
@@ -241,20 +241,19 @@ public class Orario {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        //aule occupate 
-        while (rs.next()) {
-            Aula au = new Aula();
-            au.Load(rs.getString("aula"));
-            occupate.add(au); 
+        //aule occupate
+        try (ResultSet rs = stmt.executeQuery(query)) {
+            //aule occupate
+            while (rs.next()) {
+                Aula au = new Aula();
+                au.Load(rs.getString("aula")); 
+                occupate.add(au);
             }
-       
-            
-        
-      
+        }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         

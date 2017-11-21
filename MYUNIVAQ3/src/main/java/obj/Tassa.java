@@ -94,22 +94,23 @@ public class Tassa {
                     "WHERE Tassa.id =" +i ;
     try{
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            this.id = rs.getString("id");
-            this.nome = rs.getString("nome");
-            Date d = rs.getDate("datascadenza");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            this.datascadenza= df.format(d);
-            this.descrizione= rs.getString("descrizione");
-            this.costo =rs.getInt("costo");
-            this.pagata = rs.getBoolean("pagata");
-            
-        }
+         try (ResultSet rs = stmt.executeQuery(query)) {
+             while (rs.next()) {
+                 this.id = rs.getString("id");
+                 this.nome = rs.getString("nome");
+                 Date d = rs.getDate("datascadenza");
+                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                 this.datascadenza= df.format(d);
+                 this.descrizione= rs.getString("descrizione");
+                 this.costo =rs.getInt("costo");
+                 this.pagata = rs.getBoolean("pagata");
+                 
+             }}
     
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     

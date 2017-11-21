@@ -109,17 +109,18 @@ public class Corso {
                     "WHERE CorsoDiLaurea.id =" +i ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            this.id = rs.getString("id");
-            this.nome = rs.getString("nome");
-            this.descrizione = rs.getString("descrizione");
-            }
-      LoadMaterie();
-        
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     this.id = rs.getString("id");
+                     this.nome = rs.getString("nome");
+                     this.descrizione = rs.getString("descrizione");
+                 }
+                 LoadMaterie();
+             }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -135,19 +136,20 @@ public class Corso {
                    "WHERE MaterieCorso.id_corso = " +this.id ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        List<Materia> lp = new LinkedList<>();
-        List<String> lp2 = new LinkedList<>();
-        while (rs.next()) {
-            addMateria(rs.getString("id_materia"), (LinkedList<Materia>) lp);
-            addMateria2(rs.getString("id_materia"), (LinkedList<String>) lp2);
-          }
-        setMaterie(lp);
-        setMaterieurl(lp2);
-        
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                List<Materia> lp = new LinkedList<>();
+                List<String> lp2 = new LinkedList<>();
+                while (rs.next()) {
+                    addMateria(rs.getString("id_materia"), (LinkedList<Materia>) lp);
+                    addMateria2(rs.getString("id_materia"), (LinkedList<String>) lp2);
+                }
+                setMaterie(lp);
+                setMaterieurl(lp2);
+            }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
          

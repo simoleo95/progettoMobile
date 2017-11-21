@@ -137,23 +137,23 @@ public class Materia {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            
-            this.id = rs.getString("codice");
-            this.nome = rs.getString("nome");
-          
-            this.anno =rs.getInt("anno");
-            this.semestre = rs.getInt("semestre");
-            this.cfu = rs.getInt("cfu");
-            this.tipocfu = rs.getString("tipoCfu");
-            }
-       LoadProfessori();
-       
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     
+                     this.id = rs.getString("codice");
+                     this.nome = rs.getString("nome");
+                     
+                     this.anno =rs.getInt("anno");
+                     this.semestre = rs.getInt("semestre");
+                     this.cfu = rs.getInt("cfu");
+                     this.tipocfu = rs.getString("tipoCfu");
+                 }
+                 LoadProfessori();
+             }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -169,19 +169,18 @@ public class Materia {
                    "WHERE insegnamento.fk_materia = \'" + this.id +"\'" ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-         List<Professore> lp = new LinkedList<>();
-         List<String> lp2 = new LinkedList<>();
-        while (rs.next()) {
-           
-           addProfessore(rs.getInt("fk_professore"), (LinkedList<Professore>) lp);
-            addProfessoreurl(rs.getInt("fk_professore"), (LinkedList<String>) lp2);
-          }
-        
-        
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                List<Professore> lp = new LinkedList<>();
+                List<String> lp2 = new LinkedList<>();
+                while (rs.next()) {
+                    
+                    addProfessore(rs.getInt("fk_professore"), (LinkedList<Professore>) lp);
+                    addProfessoreurl(rs.getInt("fk_professore"), (LinkedList<String>) lp2);
+                } }
     }catch (SQLException e ) {
-        
+         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
          

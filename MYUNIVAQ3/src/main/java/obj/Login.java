@@ -103,6 +103,7 @@ public class Login {
             
             outt.setToken("token");
             }
+       rs.close();
         if(tempu != null && tempp != null  ){
             
             outt.setToken("user inesistente ");
@@ -135,10 +136,11 @@ public class Login {
                                                    
                                                     }
                          }}//end if 
-       
+       rs.close();
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
  
@@ -156,17 +158,18 @@ public class Login {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        String tempt ="";
-        while (rs.next()) {
-            tempt= rs.getString("token");
-            
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                String tempt ="";
+                while (rs.next()) {
+                    tempt= rs.getString("token");
+                    
+                }
+                output = (this.token == null ? tempt == null : this.token.equals(tempt));
             }
-        output = (this.token == null ? tempt == null : this.token.equals(tempt));
-       
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -186,17 +189,18 @@ public class Login {
     try {
         System.out.println("param2 = " + query );
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
 //        i = stmt.executeUpdate(query);
-        if(rs!= null){
-        i=1;
-        }
-       
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                //        i = stmt.executeUpdate(query);
+                if(rs!= null){
+                    i=1;
+                }   }
         
     }catch (SQLException e ) {
          String r = e.getSQLState();
          System.out.println("r  = "+ r );
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -221,17 +225,19 @@ public class Login {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        String tempu = "";
-        String tempp= "";
-        
-        while (rs.next()) {
-            tempu= rs.getString("user");
-            tempp= rs.getString("token");
-            outt.setMatricola(rs.getInt("matricola"));
-            outt.setUser(rs.getString("user"));
-            
-            //outt.setToken("token");
+        String tempu;
+        String tempp;
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                tempu = "";
+                tempp = "";
+                while (rs.next()) {
+                    tempu= rs.getString("user");
+                    tempp= rs.getString("token");
+                    outt.setMatricola(rs.getInt("matricola"));
+                    outt.setUser(rs.getString("user"));
+                    
+                    //outt.setToken("token");
+                }
             }
         if(tempu != null && tempp != null  ){
             
@@ -269,6 +275,7 @@ public class Login {
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
  

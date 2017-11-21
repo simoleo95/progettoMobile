@@ -55,17 +55,16 @@ public class Aula {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-            this.id = rs.getString("id");
-            this.blocco = rs.getString("blocco");
-            
-        }
-    
+         try (ResultSet rs = stmt.executeQuery(query)) {
+             while (rs.next()) {
+                 this.id = rs.getString("id");
+                 this.blocco = rs.getString("blocco");
+                 
+             }}
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     
@@ -81,19 +80,18 @@ public class Aula {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-              Aula au = new Aula();
-           
-            au.id = rs.getString("id");
-            au.blocco = rs.getString("blocco");
-            out.add(au);
-        }
-    
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     Aula au = new Aula();
+                     
+                     au.id = rs.getString("id");
+                     au.blocco = rs.getString("blocco");
+                     out.add(au);
+                 }    }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     return out;
@@ -108,19 +106,18 @@ public class Aula {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-              Aula au = new Aula();
-           
-            au.id = rs.getString("id");
-            au.blocco = rs.getString("blocco");
-            out.add(au);
-        }
-    
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     Aula au = new Aula();
+                     
+                     au.id = rs.getString("id");
+                     au.blocco = rs.getString("blocco");
+                     out.add(au);
+                 }    }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     return out;

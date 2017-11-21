@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/MYUNIVAQ3"/>
+<Context path="/MYUNIVAQ3">
+ <Resource
+        name="jdbc/appmobileee" 
+        type="javax.sql.DataSource"
+        auth="Container"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost/webdb"
+        username="root"
+        password="webpass"
+        maxActive="10"
+        maxIdle="5"
+        maxWait="10000"
+    />
+ </Context>

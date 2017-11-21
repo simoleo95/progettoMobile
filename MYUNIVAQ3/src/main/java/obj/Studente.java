@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import javax.sql.DataSource;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Studente {
     private List<Materia> corsiScelti;
     private List<Tassa> tasse;
     private List<Appello> appelli;
-    
+
 
     public Studente() {
         this.nome = "qualcosa non va";
@@ -129,27 +130,28 @@ public class Studente {
     try {
         
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            this.matricola = rs.getInt("matricola");
-            setNome(rs.getString("nome"));
-            this.cognome = rs.getString("cognome");
-            Date d = rs.getDate("dataDiNascita");
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            this.dataDiNascita = df.format(d);
-            Corso co = new Corso();
-            co.Load(rs.getString("corso"));
-            //co.lite();
-            setCorso(co);
-            }
-        
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 while (rs.next()) {
+                     this.matricola = rs.getInt("matricola");
+                     setNome(rs.getString("nome"));
+                     this.cognome = rs.getString("cognome");
+                     Date d = rs.getDate("dataDiNascita");
+                     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                     this.dataDiNascita = df.format(d);
+                     Corso co = new Corso();
+                     co.Load(rs.getString("corso"));
+                     //co.lite();
+                     setCorso(co);
+                 }}
         LoadLibretto(i);
         loadCorsiScelti(i);
          loadTasse(i);
          LoadAppelli();
+       
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -179,10 +181,12 @@ public class Studente {
             le.add(asd);
            asd.setMateriaload(rs.getString("fk_materia"));
             }   
+        rs.close();
         setLibretto(le);
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -197,18 +201,21 @@ public class Studente {
                    "WHERE CorsiScelti.fk_studente =" +i ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        List<Materia> lm = new LinkedList<>();
-        while (rs.next()) {
-            Materia ma = new Materia();
-            ma.Load(rs.getString("fk_materia"));
-            lm.add(ma);
-           
-            } 
+        List<Materia> lm;
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 lm = new LinkedList<>();
+                 while (rs.next()) {
+                     Materia ma = new Materia();
+                     ma.Load(rs.getString("fk_materia"));
+                     lm.add(ma);
+                     
+                 }}
         setCorsiScelti(lm);
+        
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -223,18 +230,20 @@ public class Studente {
                    "WHERE Tassa.studente_fk =" +i ;
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        List<Tassa> lt = new LinkedList<>();
-        while (rs.next()) {
-            Tassa tas = new Tassa();
-            tas.Load(rs.getString("id"));
-            lt.add(tas);
-            
-            }   
+        List<Tassa> lt;
+             try (ResultSet rs = stmt.executeQuery(query)) {
+                 lt = new LinkedList<>();
+                 while (rs.next()) {
+                     Tassa tas = new Tassa();
+                     tas.Load(rs.getString("id"));
+                     lt.add(tas);
+                     
+                 }}
         setTasse(lt);
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
             
@@ -301,6 +310,7 @@ public class Studente {
         }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         
@@ -319,18 +329,17 @@ public class Studente {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-           int appello= rs.getInt("fk_appello");
-           Appello app= new Appello();
-           app.Load(appello);
-           a.add(app);  
-        }
-    
+                try (ResultSet rs = stmt.executeQuery(query)) {
+                    while (rs.next()) {
+                        int appello= rs.getInt("fk_appello");
+                        Appello app= new Appello();
+                        app.Load(appello);
+                        a.add(app);
+                    }       }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
        
@@ -355,17 +364,16 @@ public class Studente {
     try{
         
          stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {
-        Orario o = new Orario();
-        o.load(rs.getInt("id"));
-        a.add(o);
-        }
-        
+                try (ResultSet rs = stmt.executeQuery(query)) {
+                    while (rs.next()) {
+                        Orario o = new Orario();
+                        o.load(rs.getInt("id"));
+                        a.add(o);
+                    }       }
     }catch(SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
        

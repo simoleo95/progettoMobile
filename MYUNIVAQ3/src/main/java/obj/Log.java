@@ -43,6 +43,7 @@ public class Log {
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
          return out;

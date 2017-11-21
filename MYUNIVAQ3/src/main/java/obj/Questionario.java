@@ -108,15 +108,15 @@ public class Questionario {
     System.out.println(query);
     try {
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-         
-        while (rs.next()) {
-           
-        out =true;
-          }   
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    
+                    out =true;
+                } }
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
     
@@ -147,6 +147,7 @@ public class Questionario {
     }catch (SQLException e ) {
         
     } finally {
+         con.close();
         if (stmt != null) { stmt.close(); }
     }
         }
