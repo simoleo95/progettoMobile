@@ -32,11 +32,11 @@ export class OrarioPage {
              this.orario.push(data[entry]);
          } 
       });
-    
+     
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrarioPage');
+    console.log('ionViewDidLoad OrarioPage') ;
   }
     
   openAvatar() {

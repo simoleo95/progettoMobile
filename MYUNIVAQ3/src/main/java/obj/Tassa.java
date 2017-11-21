@@ -91,7 +91,8 @@ public class Tassa {
         Statement stmt = null;
     String query = "select * " +
                    "from  MYUNIVAQ.Tassa "+
-                    "WHERE Tassa.id =" +i ;
+                    "WHERE Tassa.id ='" +i+"'" ;
+    System.out.println(query);
     try{
          stmt = con.createStatement();
          try (ResultSet rs = stmt.executeQuery(query)) {
